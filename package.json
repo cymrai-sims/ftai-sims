@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "framer-motion": "^12.19.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && venv\\Scripts\\activate && python server.py"
+  }
+}
+

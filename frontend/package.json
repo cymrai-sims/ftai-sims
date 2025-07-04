@@ -1,0 +1,41 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "homepage": "https://Uri-Cymrai.github.io/ftai-front",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "api": "cd api && venv/bin/flask run --no-debugger",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "gh-pages-clean": "rimraf node_modules/.cache/gh-pages"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.10",
+    "chart.js": "^4.5.0",
+    "firebase": "^11.9.1",
+    "prop-types": "^15.8.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.6.2",
+    "tailwindcss": "^4.1.10"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "gh-pages": "^6.3.0",
+    "globals": "^16.0.0",
+    "rimraf": "^6.0.1",
+    "vite": "^6.3.5"
+  }
+}
