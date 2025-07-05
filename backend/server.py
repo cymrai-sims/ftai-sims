@@ -1,12 +1,14 @@
 import os
 from flask import Flask, jsonify
 from dotenv import load_dotenv
-from sqlalchemy import text
+#from sqlalchemy import text
 
-# Load environment variables from .env file
+from api_route.api_blueprint_registry import register_all_blueprints_v1
+
+
 load_dotenv()
 
-from models import db, Inventories
+#from models import db, Inventories
 
 app = Flask(__name__)
 
@@ -15,8 +17,16 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS', 'False') == 'True'
 
+register_all_blueprints_v1(app)
+
+
 # Initialize database
-db.init_app(app)
+#db.init_app(app)
+
+
+
+
+
 
 # Test Routes
 @app.route('/', methods=['GET'])
