@@ -1,10 +1,18 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-// Icons
-import { RiRobot3Line } from "react-icons/ri";
+import { RiRobot3Line } from 'react-icons/ri';
+import useChatLogic from '../hooks/useChatLogic';
 
 const ChatBox = ({ isOpen }) => {
+  const {
+    input,
+    setInput,
+    messages,
+    contextRef,
+    handleKeyDown,
+    sendMessage,
+  } = useChatLogic(isOpen);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -24,18 +32,41 @@ const ChatBox = ({ isOpen }) => {
               <h6 className="text-sm text-gray-100">Ask your questions and get instant help</h6>
             </div>
           </div>
-          <div className="context-window p-4 overflow-y-auto h-64">
-            <div className="message bg-gray-100 p-3 rounded-lg mb-2">Hello! How can I assist you today?</div>
-            <div className="message bg-[var(--dark-main)] text-white p-3 rounded-lg mb-2 text-right">I have a question about my order.</div>
-            <div className="message bg-gray-100 p-3 rounded-lg mb-2">Sure! What would you like to know?</div>
+
+          <div
+            ref={contextRef}
+            className="context-window p-4 overflow-y-auto flex-1 flex flex-col gap-2"
+          >
+            {messages.map((msg, i) => (
+              <div
+                key={i}
+                className={`message p-3 rounded-lg mb-2 max-w-[80%] ${
+                  msg.type === 'bot'
+                    ? "bg-gray-100 text-gray-900 self-start"
+                    : "bg-[var(--dark-main)] text-white self-end text-right"
+                }`}
+              >
+                {msg.text}
+              </div>
+            ))}
           </div>
+
           <div className="input flex items-center p-4 border-t">
             <input
               type="text"
               placeholder="Type your message."
               className="flex-1 border p-2 rounded-lg text-gray-900"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
-            <button className="bg-[var(--dark-main)] text-white px-4 py-2 ml-2 rounded-lg">Send</button>
+            <button
+              className="bg-[var(--dark-main)] text-white px-4 py-2 ml-2 rounded-lg"
+              onClick={sendMessage}
+              disabled={!input.trim()}
+            >
+              Send
+            </button>
           </div>
         </motion.div>
       )}

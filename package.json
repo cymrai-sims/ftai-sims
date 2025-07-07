@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^1.10.0",
     "framer-motion": "^12.19.2"
   },
   "devDependencies": {
@@ -11,4 +12,3 @@
     "backend": "cd backend && venv\\Scripts\\activate && python server.py"
   }
 }
-
