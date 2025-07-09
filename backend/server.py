@@ -7,7 +7,7 @@ from api_route.api_blueprint_registry import register_all_blueprints_v1
 
 load_dotenv()
 
-from models import db, Inventories
+#from models import db, Inventories
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
