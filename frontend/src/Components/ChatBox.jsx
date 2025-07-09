@@ -42,8 +42,8 @@ const ChatBox = ({ isOpen }) => {
                 key={i}
                 className={`message p-3 rounded-lg mb-2 max-w-[80%] ${
                   msg.type === 'bot'
-                    ? "bg-gray-100 text-gray-900 self-start"
-                    : "bg-[var(--dark-main)] text-white self-end text-right"
+                    ? "bg-gray-100 text-gray-900 text-2xl self-start"
+                    : "bg-[var(--dark-main)] text-white text-2xl self-end text-right"
                 }`}
               >
                 {msg.text}
@@ -55,13 +55,13 @@ const ChatBox = ({ isOpen }) => {
             <input
               type="text"
               placeholder="Type your message."
-              className="flex-1 border p-2 rounded-lg text-gray-900"
+              className="flex-1 border p-4 rounded-lg text-gray-900 text-2xl"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
             />
             <button
-              className="bg-[var(--dark-main)] text-white px-4 py-2 ml-2 rounded-lg"
+              className="bg-[var(--dark-main)] text-white px-[3.4rem] py-4 ml-2 rounded-lg text-2xl"
               onClick={sendMessage}
               disabled={!input.trim()}
             >

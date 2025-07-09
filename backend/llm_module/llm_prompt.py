@@ -13,7 +13,7 @@ all_prompts = {
     },
     "/accounts": {
         "insight": {
-            "admin": "tell user good morning",
+            "admin": "tell user good afternon",
             "supervisor": "tell user good morning",
             "technician": "tell user good morning"
         },
@@ -25,7 +25,7 @@ all_prompts = {
     },
     "/inventory": {
         "insight": {
-            "admin": "tell user good morning",
+            "admin": "tell user good night",
             "supervisor": "tell user good morning",
             "technician": "tell user good morning"
         },
@@ -37,7 +37,7 @@ all_prompts = {
     },
     "/maintenance": {
         "insight": {
-            "admin": "tell user good morning",
+            "admin": "wish user happy birthday",
             "supervisor": "tell user good morning",
             "technician": "tell user good morning"
         },
@@ -49,7 +49,7 @@ all_prompts = {
     },
     "/procurement": {
         "insight": {
-            "admin": "tell user good morning",
+            "admin": "wish user happy friendship day",
             "supervisor": "tell user good morning",
             "technician": "tell user good morning"
         },
@@ -61,7 +61,7 @@ all_prompts = {
     },
     "/requisitions": {
         "insight": {
-            "admin": "tell user good morning",
+            "admin": "wish user happy valentines day",
             "supervisor": "tell user good morning",
             "technician": "tell user good morning"
         },
@@ -73,7 +73,7 @@ all_prompts = {
     },
     "/support_chat": {
         "insight": {
-            "admin": "tell user good morning",
+            "admin": "user is sad, so tell a joke",
             "supervisor": "tell user good morning",
             "technician": "tell user good morning"
         },

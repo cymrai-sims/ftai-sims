@@ -5,10 +5,9 @@ from dotenv import load_dotenv
 from flask_cors import CORS
 from api_route.api_blueprint_registry import register_all_blueprints_v1
 
-
 load_dotenv()
 
-#from models import db, Inventories
+from models import db, Inventories
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
@@ -23,18 +22,13 @@ register_all_blueprints_v1(app)
 # Initialize database
 #db.init_app(app)
 
-
-
-
-
-
 # Test Routes
 @app.route('/', methods=['GET'])
 def home():
     return "Flask server is running!"
 
 # Fetch inventories
-@app.route('/api/inventories', methods=['GET'])
+@app.route('/api/v1/inventories', methods=['GET'])
 def get_inventories():
     try:
         with app.app_context():
@@ -45,7 +39,7 @@ def get_inventories():
         return jsonify({"status": "error", "error": str(e)}), 500
 
 # Test database connection
-@app.route('/api/db-test', methods=['GET'])
+@app.route('/api/v1/db-test', methods=['GET'])
 def test_db_connection():
     try:
         with app.app_context():
