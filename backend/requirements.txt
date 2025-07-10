@@ -11,3 +11,4 @@ SQLAlchemy==2.0.41
 flask-cors==6.0.1
 google-auth==2.40.3
 google-genai==1.24.0
+ollama==0.5.1
