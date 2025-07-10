@@ -9,7 +9,7 @@ import Home from './Pages/Home';
 import Inventory from "./Pages/Inventory";
 import Procurement from "./Pages/Procurement";
 import Maintenance from "./Pages/Maintenance";
-import Accounts from "./Pages/Accounts";
+import MyAccounts from "./Pages/Settings";
 import Support from "./Pages/Support";
 import Requisitions from "./Pages/Requisitions";
 import NotFound from './pages/NotFound';
@@ -80,7 +80,7 @@ const App = () => {
           element={
             <PrivateRoute>
               <AppLayout>
-                <Accounts />
+                <MyAccount />
               </AppLayout>
             </PrivateRoute>
           }
