@@ -18,7 +18,7 @@ const ChatBox = ({ isOpen }) => {
       {isOpen && (
         <motion.div
           initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 24 }}
+          animate={{ opacity: 1, y:18 }}
           exit={{ opacity: 0, y: 100 }}
           transition={{ duration: 0.3 }}
           className="fixed bottom-36 right-4 w-160 h-180 bg-white shadow-lg rounded-lg flex flex-col flex-1 z-50"
@@ -28,8 +28,8 @@ const ChatBox = ({ isOpen }) => {
               <RiRobot3Line className="text-white text-3xl" />
             </div>
             <div>
-              <h5 className="font-bold">Chat with AI</h5>
-              <h6 className="text-sm text-gray-100">Ask your questions and get instant help</h6>
+              <h5 className="font-bold">Chat with SIMS-AI</h5>
+              <h6 className="text-sm text-gray-100">Get insights and make decisions with SIMS data.</h6>
             </div>
           </div>
 
@@ -55,13 +55,13 @@ const ChatBox = ({ isOpen }) => {
             <input
               type="text"
               placeholder="Type your message."
-              className="flex-1 border p-4 rounded-lg text-gray-900 text-2xl"
+              className="flex-1 border p-4 rounded-l-lg text-gray-900 text-2xl outline-solid outline-[var(--dark-main)]"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
             />
             <button
-              className="bg-[var(--dark-main)] text-white px-[3.4rem] py-4 ml-2 rounded-lg text-2xl"
+              className="bg-[var(--dark-main)] text-white px-[4.2rem] py-5 ml-2 rounded-r-lg text-2xl"
               onClick={sendMessage}
               disabled={!input.trim()}
             >
