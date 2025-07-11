@@ -1,7 +1,7 @@
 import os
 from flask import Flask, jsonify
 from dotenv import load_dotenv
-#from sqlalchemy import text
+from sqlalchemy import text
 from flask_cors import CORS
 from api_route.api_blueprint_registry import register_all_blueprints_v1
 
@@ -11,6 +11,7 @@ from models import db, Inventories
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
+
 # Configurations from .env
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
@@ -18,9 +19,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIF
 
 register_all_blueprints_v1(app)
 
-
 # Initialize database
-#db.init_app(app)
+db.init_app(app)
 
 # Test Routes
 @app.route('/', methods=['GET'])

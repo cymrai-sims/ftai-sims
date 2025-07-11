@@ -7,11 +7,12 @@ import logo from '../Images/ftai-aviation.avif';
 // Icons#
 import { IoHomeOutline } from "react-icons/io5";
 import { GoChecklist } from "react-icons/go";
-import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { GiAutoRepair } from "react-icons/gi";
-import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { TfiHelpAlt } from "react-icons/tfi";
+import { IoReceiptOutline } from "react-icons/io5";
+import { RiUserSettingsLine } from "react-icons/ri";
+import { BiArchive } from "react-icons/bi";
 
 import { IoIosLogOut } from "react-icons/io";
 
@@ -69,7 +70,7 @@ const Sidebar = () => {
                 }`
               }
             >
-              <CiDeliveryTruck className="text-[2rem]" />
+              <BiArchive className="text-[2rem]" />
               <span>Procurement</span>
             </NavLink>
           </li>
@@ -99,13 +100,13 @@ const Sidebar = () => {
                 }`
               }
             >
-              <GiAutoRepair className="text-[2rem]" />
+              <IoReceiptOutline className="text-[2rem]" />
               <span>Requisitions</span>
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/accounts"
+              to="/settings"
               className={({ isActive }) =>
                 `flex items-center px-10 py-5 gap-4 text-white transition duration-300 ${
                   isActive
@@ -114,8 +115,8 @@ const Sidebar = () => {
                 }`
               }
             >
-              <MdOutlineAccountBalanceWallet className="text-[2rem]" />
-              <span>Accounts</span>
+              <RiUserSettingsLine className="text-[2rem]" />
+              <span>Settings</span>
             </NavLink>
           </li>
           <li>

@@ -23,7 +23,7 @@ const Navbar = () => {
         {/* Welcome Message */}
         <div className='name pl-10'>
             <p className='text-2xl font-light'>
-                Welcome Back <span className='font-bold text-[var(--dark-main)]'>Urinrin Ogidiama</span>
+                Welcome Back <span className='font-bold text-[var(--dark-main)]'>User Name</span>
                 {/* {new Date(currentTime * 1000).toLocaleTimeString()} */}
             </p>
         </div>
@@ -57,7 +57,7 @@ const Navbar = () => {
                 <FaUserTie className='text-4xl text-[var(--dark-main-mid)] cursor-pointer hover:text-[var(--dark-main)]' />
                 <a className='flex flex-row items-center gap-2' href="">
                     <div className='flex flex-col'>
-                        <h5 className='text-[var(--dark-main)]'>Urinrin Ogidiama</h5>
+                        <h5 className='text-[var(--dark-main)]'>User Name</h5>
                     </div>
                     <FaCaretDown className='text-2xl text-[var(--dark-main-mid)] cursor-pointer hover:text-[var(--dark-main)]' />
                 </a>
