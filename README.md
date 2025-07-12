@@ -104,7 +104,7 @@ root/
    npm run dev
    ```
 
-   The app will be available at [http://localhost:5175](http://localhost:5175).
+   The app will be available at [http://localhost:5173](http://localhost:5173).
 
 ---
 
@@ -141,7 +141,7 @@ Your root `package.json` should include the following scripts:
 ### 3. To start both servers from the root directory in one terminal:
 
 ```bash
-npm run dev
+npm run start-all
 ```
 
 - This command will:
@@ -243,7 +243,7 @@ python server.py    # Run Flask app (after activating your environment)
 #### Root
 
 ```bash
-npm run dev         # Run both frontend and backend concurrently from root
+npm run start-all         # Run both frontend and backend concurrently from root
 ```
 
 ---

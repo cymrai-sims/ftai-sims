@@ -1,5 +1,5 @@
 -- create inventory
-CREATE TABLE Inventories (
+CREATE TABLE Inventory (
     DESCRIPTION NVARCHAR(255),
     STOCK_LINE NVARCHAR(50),
     CTRL_NUMBER NVARCHAR(50),

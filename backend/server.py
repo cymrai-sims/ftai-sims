@@ -7,7 +7,7 @@ from api_route.api_blueprint_registry import register_all_blueprints_v1
 
 load_dotenv()
 
-from models import db, Inventories
+from models import db, Inventory
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
@@ -27,13 +27,13 @@ db.init_app(app)
 def home():
     return "Flask server is running!"
 
-# Fetch inventories
-@app.route('/api/v1/inventories', methods=['GET'])
+# Fetch global inventory
+@app.route('/api/v1/inventory', methods=['GET'])
 def get_inventories():
     try:
         with app.app_context():
-            inventories = Inventories.query.limit(100).all()
-            data = [r.to_dict() for r in inventories]
+            inventory = Inventory.query.limit(100).all()
+            data = [r.to_dict() for r in inventory]
         return jsonify({"status": "success", "data": data})
     except Exception as e:
         return jsonify({"status": "error", "error": str(e)}), 500

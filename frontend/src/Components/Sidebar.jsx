@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Images
-import logo from '../Images/ftai-aviation.avif';
+import logo from '../Images/full_logo_1.png';
 
 // Icons#
 import { IoHomeOutline } from "react-icons/io5";
@@ -18,11 +18,11 @@ import { IoIosLogOut } from "react-icons/io";
 
 const Sidebar = () => {
   return ( 
-    <div className='sidebar fixed top-0 left-0 h-screen w-84 bg-[var(--dark-main)] text-white flex flex-col sidebar-shadow z-50'>
-      <div className="logo-bar flex flex-col h-30 border-b-2 border-white/20 pl-10 items-center justify-center">
+    <div className='sidebar fixed top-0 left-0 h-screen w-86 bg-[var(--dark-main)] text-white flex flex-col sidebar-shadow z-50'>
+      <div className="logo-bar flex flex-col h-30 border-b-2 border-white/20 px-5 items-center justify-center">
        <div className="flex flex-row items-center">
          <img src={logo} alt="FTAI Logo" className="h-20" />
-          <h4 className=" text-2xl"><span className='font-bold'>FTAI</span> AVIATION</h4>
+          {/* <h4 className="text-2xl"><span className='font-bold pr-2'>FTAI</span> AVIATION</h4> */}
        </div>
         {/* <p>Smart Inventory Management</p> */}
       </div>
