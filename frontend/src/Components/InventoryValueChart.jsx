@@ -1,7 +1,7 @@
 import React from 'react';
 import Chart from 'chart.js/auto';
 
-class DoughnutChart extends React.Component {
+class InventoryValueChart extends React.Component {
   constructor(props) {
     super(props);
     this.chartRef = React.createRef();
@@ -91,4 +91,4 @@ class DoughnutChart extends React.Component {
   }
 }
 
-export default DoughnutChart;
+export default InventoryValueChart;

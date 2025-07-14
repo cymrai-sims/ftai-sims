@@ -3,20 +3,31 @@ from flask import Flask, jsonify
 from dotenv import load_dotenv
 from sqlalchemy import text
 from flask_cors import CORS
+from urllib.parse import quote_plus
+
+from models import db, Inventory
 from api_route.api_blueprint_registry import register_all_blueprints_v1
 
 load_dotenv()
 
-from models import db, Inventory
-
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
 
-# Configurations from .env
+# Build SQLAlchemy URI
+driver = os.getenv('DB_DRIVER')
+server = os.getenv('DB_SERVER')
+database = os.getenv('DB_NAME')
+trusted_connection = os.getenv('DB_TRUSTED_CONNECTION', 'yes')
+
+odbc_str = f"DRIVER={{{driver}}};SERVER={server};DATABASE={database};Trusted_Connection={trusted_connection}"
+connection_uri = f"mssql+pyodbc:///?odbc_connect={quote_plus(odbc_str)}"
+
+# Flask config
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] = connection_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS', 'False') == 'True'
 
+# Register Blueprints
 register_all_blueprints_v1(app)
 
 # Initialize database
