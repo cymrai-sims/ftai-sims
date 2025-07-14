@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import Notification from '../Components/Notification';
 import InventoryValueChart from '../Components/InventoryValueChart';
-import LineChart from '../Components/LineChart';
+import HistoricValueChart from '../Components/HistoricValueChart';
 import Inventory from '../Components/InventoryList';
 
 // Icons
@@ -66,7 +66,7 @@ const Home = () => {
 
         <div className="w-3/5 bg-white px-10 py-5">
           <p className='text-[var(--dark-main)] py-3'>Sales Overview</p>
-          <LineChart labels={labels} data={data} borderColor="rgb(4, 46, 73)" fill="false" />
+          <HistoricValueChart labels={labels} data={data} borderColor="rgb(4, 46, 73)" fill="false" />
         </div>
       </div>
 
