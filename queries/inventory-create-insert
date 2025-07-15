@@ -1,0 +1,102 @@
+-- create inventory
+CREATE TABLE Inventory (
+    DESCRIPTION NVARCHAR(255),
+    STOCK_LINE NVARCHAR(50),
+    CTRL_NUMBER NVARCHAR(50),
+    CTRL_ID NVARCHAR(50),
+    RECEIVER_NUMBER NVARCHAR(50),
+    QTY_OH INT,
+    QTY_AVAILABLE INT,
+    QTY_RESERVED INT,
+    UNIT_COST DECIMAL(18,2),
+    EXT_COST DECIMAL(18,2),
+    STOCK_CATEGORY_CODE NVARCHAR(50),
+    [Condition] NVARCHAR(50),
+    SERIAL_NUMBER NVARCHAR(100),
+    SHELF_LIFE INT,
+    LOCATION_CODE NVARCHAR(50),
+    WAREHOUSE_CODE NVARCHAR(50),
+    RESERVED NVARCHAR(10),
+    DAYS_SINCE_REC INT,
+    REC_DATE DATE,
+    GEO_CODE NVARCHAR(50),
+    RO_NUMBER NVARCHAR(50),
+    PO_NUMBER NVARCHAR(50),
+    WORK_ORDER NVARCHAR(50),
+    RESERVE_DATE DATE,
+    PT_PRINT_DATE DATE,
+    MAT_GROUP NVARCHAR(50),
+    [TYPE] NVARCHAR(50),
+    MAT_SUB_GROUP NVARCHAR(50),
+    MAT_SUB_GROUP_DESCR NVARCHAR(255),
+    COUNTRY_OF_MANUFACTURER NVARCHAR(100),
+    ATA_POS_REF NVARCHAR(50),
+    MANUFACTURER NVARCHAR(100),
+    ATA_REF NVARCHAR(50),
+    ATA_DESC NVARCHAR(255),
+    PartGroup NVARCHAR(50),
+    PRICE_DATE DATE,
+    HOME_LP NVARCHAR(50),
+    MFG_LP_USD DECIMAL(18,2),
+    NSN_NUM NVARCHAR(50),
+    MaterialGroup NVARCHAR(50),
+    STOCK_UNIT NVARCHAR(20),
+    DANGEROUS_G NVARCHAR(10)
+);
+
+-- Insert into inventory
+INSERT INTO Inventory (
+    DESCRIPTION, STOCK_LINE, CTRL_NUMBER, CTRL_ID, RECEIVER_NUMBER, QTY_OH,
+    QTY_AVAILABLE, QTY_RESERVED, UNIT_COST, EXT_COST, STOCK_CATEGORY_CODE,
+    [Condition], SERIAL_NUMBER, SHELF_LIFE, LOCATION_CODE, WAREHOUSE_CODE, RESERVED,
+    DAYS_SINCE_REC, REC_DATE, GEO_CODE, RO_NUMBER, PO_NUMBER, WORK_ORDER, RESERVE_DATE,
+    PT_PRINT_DATE, MAT_GROUP, [TYPE], MAT_SUB_GROUP, MAT_SUB_GROUP_DESCR,
+    COUNTRY_OF_MANUFACTURER, ATA_POS_REF, MANUFACTURER, ATA_REF, ATA_DESC, PartGroup,
+    PRICE_DATE, HOME_LP, MFG_LP_USD, NSN_NUM, MaterialGroup, STOCK_UNIT, DANGEROUS_G
+) VALUES (
+    'SP90B3',                 -- DESCRIPTION
+    'PIN-COTTER',             -- STOCK_LINE
+    '1',                      -- CTRL_NUMBER
+    '421930',                 -- CTRL_ID
+    '1',                      -- RECEIVER_NUMBER
+    0,						  -- QTY_OH (should be INT, check your data!)
+    4,                        -- QTY_AVAILABLE
+    4,                        -- QTY_RESERVED
+    0,                        -- UNIT_COST
+    0,                        -- EXT_COST
+    0,                        -- STOCK_CATEGORY_CODE
+    '1',                      -- [Condition]
+    'NEW',                    -- SERIAL_NUMBER
+    NULL,                     -- SHELF_LIFE
+    NULL,                     -- LOCATION_CODE
+    'ETC-K118',               -- WAREHOUSE_CODE
+    'MIA - ETC',              -- RESERVED
+    0,                        -- DAYS_SINCE_REC
+    '2025-07-11',             -- REC_DATE
+    NULL,                     -- GEO_CODE
+    NULL,                     -- RO_NUMBER
+    NULL,                     -- PO_NUMBER
+    NULL,                     -- WORK_ORDER
+    NULL,                     -- RESERVE_DATE
+    NULL,                     -- PT_PRINT_DATE
+    NULL,                     -- MAT_GROUP
+    'R',                      -- [TYPE]
+    NULL,                     -- MAT_SUB_GROUP
+    NULL,                     -- MAT_SUB_GROUP_DESCR
+    'V77445',                 -- COUNTRY_OF_MANUFACTURER
+    NULL,                     -- ATA_POS_REF
+    NULL,                     -- MANUFACTURER
+    '0',                      -- ATA_REF
+    NULL,                     -- ATA_DESC
+    '_',                      -- PartGroup
+    '2025-07-11',             -- PRICE_DATE
+    0,                        -- HOME_LP
+    NULL,                     -- MFG_LP_USD
+    NULL,                     -- NSN_NUM
+    NULL,                     -- MaterialGroup
+    NULL,                     -- STOCK_UNIT
+    NULL                      -- DANGEROUS_G
+);
+
+-- Select all from inventory
+SELECT TOP 1000 * FROM Inventory;

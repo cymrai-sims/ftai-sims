@@ -1,7 +1,7 @@
 import React from 'react';
 import Chart from 'chart.js/auto';
 
-class LineChart extends React.Component {
+class HistoricValueChart extends React.Component {
   constructor(props) {
     super(props);
     this.chartRef = React.createRef();
@@ -83,4 +83,4 @@ class LineChart extends React.Component {
   }
 }
 
-export default LineChart;
+export default HistoricValueChart;

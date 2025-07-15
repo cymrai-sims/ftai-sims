@@ -2,12 +2,12 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-# Define the Inventories model
-class Inventories(db.Model):
-    __tablename__ = 'Inventories'
+# Define the Inventory model
+class Inventory(db.Model):
+    __tablename__ = 'Inventory'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    DESCRIPTION = db.Column(db.String(255))
+    # id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    DESCRIPTION = db.Column(db.String(255), primary_key=True)
     STOCK_LINE = db.Column(db.String(50))
     CTRL_NUMBER = db.Column(db.String(50))
     CTRL_ID = db.Column(db.String(50))

@@ -1,13 +1,13 @@
 import React from 'react'
 
-const Accounts = () => {
+const Settings = () => {
   return (
     <div>
         <h1>
-            Accounts
+            Settings
         </h1>
     </div>
   )
 }
 
-export default Accounts
+export default Settings
