@@ -27,6 +27,7 @@ def generate_llm_response(page, session_id, user_input):
     prompt = get_prompt(page, ai_type, role)
     system_message = {"role": "system", "content": prompt}
     messages.insert(0, system_message)
+    print(messages)
 
     response = chat(
         model=model,
