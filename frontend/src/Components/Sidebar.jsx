@@ -61,6 +61,36 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink
+              to="/inventory"
+              className={({ isActive }) =>
+                `flex items-center px-10 py-5 gap-4 text-white transition duration-300 ${
+                  isActive
+                    ? 'bg-[var(--dark-main-mid)] gap-6 text-[var(--dark-main)]'
+                    : 'hover:bg-[var(--dark-main-mid)] hover:gap-6 hover:text-[var(--dark-main)]'
+                }`
+              }
+            >
+              <GoChecklist className="text-[2rem]" />
+              <span>Strangers & Runners</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/inventory"
+              className={({ isActive }) =>
+                `flex items-center px-10 py-5 gap-4 text-white transition duration-300 ${
+                  isActive
+                    ? 'bg-[var(--dark-main-mid)] gap-6 text-[var(--dark-main)]'
+                    : 'hover:bg-[var(--dark-main-mid)] hover:gap-6 hover:text-[var(--dark-main)]'
+                }`
+              }
+            >
+              <GoChecklist className="text-[2rem]" />
+              <span>Min&Max</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/procurement"
               className={({ isActive }) =>
                 `flex items-center px-10 py-5 gap-4 text-white transition duration-300 ${
