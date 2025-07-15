@@ -12,8 +12,8 @@ def handle_dashboard_chat():
     message = data.get('message', '')
     page = data.get('page','')
     session_id = data.get('session_id', '')
-    #model_name=data.get('model_name', '')
-    model_name='local_ollama' #gemini/local_ollama
+    model_name=data.get('agent', '')
+
 
     if not all([message, session_id, page]):
         return jsonify({"reply": "Missing message, session_id, or page"}), 400
@@ -32,7 +32,7 @@ def handle_dashboard_insight():
     data = request.get_json()  
     message = data.get('message', '')
     page = data.get('page','')
-    model_name='local_ollama'
+    model_name='gemini'  # or 'local_ollama' based on your requirement
     if not all([message, page]):
         return jsonify( "Missing message, or page")
     try:

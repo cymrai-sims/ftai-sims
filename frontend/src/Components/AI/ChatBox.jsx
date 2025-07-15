@@ -14,7 +14,7 @@ const ChatBox = ({ isOpen, selectedAgent }) => {
   } = useChatLogic(isOpen, selectedAgent);
 
   const agentNames = {
-    'sims-ai': 'SIMS-AI',
+    'local_ollama': 'SIMS-AI',
     'gemini': 'Gemini',
   };
 
@@ -35,7 +35,7 @@ const ChatBox = ({ isOpen, selectedAgent }) => {
             <div>
               <h5 className="font-bold">Chat with {agentNames[selectedAgent]}</h5>
               <h6 className="text-sm text-gray-100">
-                {selectedAgent === 'sims-ai'
+                {selectedAgent === 'SIMS-AI'
                   ? 'Get insights and make decisions with SIMS data.'
                   : 'Ask Gemini for analytics and trends.'}
               </h6>
