@@ -4,7 +4,7 @@ import React from 'react';
 import Notification from '../Components/Notification';
 import InventoryValueChart from '../Components/Charts/InventoryValueChart';
 import HistoricValueChart from '../Components/Charts/HistoricValueChart';
-import Inventory from '../Components/InventoryList';
+import Inventory from '../Components/Inventory/InventoryList';
 
 // Icons
 import { RiCustomerService2Line } from "react-icons/ri";

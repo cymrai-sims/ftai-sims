@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import InventoryList from '../Components/InventoryList';
+import InventoryList from '../Components/Inventory/InventoryList';
 
 const Inventory = () => {
   return (
