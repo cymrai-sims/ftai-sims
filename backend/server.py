@@ -4,18 +4,34 @@ from dotenv import load_dotenv
 from sqlalchemy import text
 from flask_cors import CORS
 from api_route.api_blueprint_registry import register_all_blueprints_v1
+from urllib.parse import quote_plus
 
 load_dotenv()
 
 from models import db, Inventory
+
+# Build the ODBC connection string
+driver = os.getenv('DB_DRIVER')
+server = os.getenv('DB_SERVER')
+database = os.getenv('DB_NAME')
+trusted_connection = os.getenv('DB_TRUSTED_CONNECTION', 'yes')
+
+odbc_str = (
+    f"DRIVER={{{driver}}};"
+    f"SERVER={server};"
+    f"DATABASE={database};"
+    f"Trusted_Connection={trusted_connection}"
+)
+
+connection_uri = f"mssql+pyodbc:///?odbc_connect={quote_plus(odbc_str)}"
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
 
 # Configurations from .env
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS', 'False') == 'True'
+app.config['SQLALCHEMY_DATABASE_URI'] = connection_uri
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS', 'False').lower() == 'true'
 
 register_all_blueprints_v1(app)
 
