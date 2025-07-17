@@ -16,8 +16,8 @@ const InventoryList = () => {
   }, []);
 
   return (
-    <div className="p-10 bg-white shadow-md">
-      <h4 className='font-bold pb-5 text-[var(--dark-main)]'>Inventory Overview</h4>
+    <div>
+      <h4 className='pb-5 text-[var(--dark-main)]'>Global Inventory List</h4>
       <div className="p-6 px-0">
         {loading ? (
           <div>Loading...</div>
@@ -27,14 +27,31 @@ const InventoryList = () => {
               <tr>
                 {/* Adjust headings as needed based on your inventory model columns */}
                 <th className="border border-white p-4 bg-[var(--dark-main-light)] text-[var(--dark-main)]">
-                  <p className="text-sm font-medium">Item</p>
+                  <p className="text-sm font-medium">PN</p>
+                </th>
+                <th className="border border-white p-4 bg-[var(--dark-main-light)] text-[var(--dark-main)]">
+                  <p className="text-sm font-medium">Description</p>
+                </th>
+                <th className="border border-white p-4 bg-[var(--dark-main-light)] text-[var(--dark-main)]">
+                  <p className="text-sm font-medium">Source</p>
+                </th>
+                <th className="border border-white p-4 bg-[var(--dark-main-light)] text-[var(--dark-main)]">
+                  <p className="text-sm font-medium">Warehouse</p>
+                </th>
+                <th className="border border-white p-4 bg-[var(--dark-main-light)] text-[var(--dark-main)]">
+                  <p className="text-sm font-medium">Condition</p>
+                </th>
+                <th className="border border-white p-4 bg-[var(--dark-main-light)] text-[var(--dark-main)]">
+                  <p className="text-sm font-medium">Category</p>
+                </th>
+                <th className="border border-white p-4 bg-[var(--dark-main-light)] text-[var(--dark-main)]">
+                  <p className="text-sm font-medium">Status</p>
+                </th>
+                <th className="border border-white p-4 bg-[var(--dark-main-light)] text-[var(--dark-main)]">
+                  <p className="text-sm font-medium">On order</p>
                 </th>
                 <th className="border border-white p-4 bg-[var(--dark-main-light)] text-[var(--dark-main)]">
                   <p className="text-sm font-medium">Quantity</p>
-                </th>
-                {/* Add more columns as necessary */}
-                <th className="border border-white p-4 bg-[var(--dark-main-light)] text-[var(--dark-main)]">
-                  <p className="text-sm font-medium">Actions</p>
                 </th>
               </tr>
             </thead>
@@ -42,23 +59,31 @@ const InventoryList = () => {
               {inventories.map((inv, idx) => (
                 <tr key={idx} className="text-[var(--dark-main)]">
                   <td className="border border-gray-900 p-4">
-                    <p>{inv.item || inv.name || inv.DESCRIPTION}</p>
+                    <p>{inv.STOCK_LINE}</p>
                   </td>
                   <td className="border border-gray-900 p-4">
-                    <p>{inv.quantity || inv.QTY_OH}</p>
+                    <p>{inv.DESCRIPTION}</p>
                   </td>
-                  {/* Add more <td> as necessary for other fields */}
                   <td className="border border-gray-900 p-4">
-                    <div className="flex gap-2">
-                      <button className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-10 py-3 rounded text-2xl">
-                        <IoEyeOutline className="h-4 w-4" />
-                        View
-                      </button>
-                      <button className="flex items-center gap-1 bg-yellow-500 hover:bg-yellow-600 text-white px-10 py-3 rounded text-2xl">
-                        <GiPencil className="h-4 w-4" />
-                        Edit
-                      </button>
-                    </div>
+                    <p>{inv.MANUFACTURER}</p>
+                  </td>
+                  <td className="border border-gray-900 p-4">
+                    <p>{inv.WAREHOUSE_CODE}</p>
+                  </td>
+                  <td className="border border-gray-900 p-4">
+                    <p>{inv.Condition}</p>
+                  </td>
+                  <td className="border border-gray-900 p-4">
+                    <p>{inv.STOCK_CATEGORY_CODE}</p>
+                  </td>
+                  <td className="border border-gray-900 p-4">
+                    <p>{inv.RESERVED}</p>
+                  </td>
+                  <td className="border border-gray-900 p-4">
+                    <p>{inv.QTY_RESERVED}</p>
+                  </td>
+                  <td className="border border-gray-900 p-4">
+                    <p>{inv.QTY_OH}</p>
                   </td>
                 </tr>
               ))}
