@@ -4,7 +4,8 @@ import React from 'react';
 import Notification from '../Components/Notification';
 import InventoryValueChart from '../Components/Charts/InventoryValueChart';
 import HistoricValueChart from '../Components/Charts/HistoricValueChart';
-import Inventory from '../Components/Inventory/InventoryList';
+import InventoryList from '../Components/Inventory/InventoryList';
+import InventoryValues from '../Components/Inventory/InventoryValues';
 
 // Icons
 import { RiCustomerService2Line } from "react-icons/ri";
@@ -70,7 +71,7 @@ const Home = () => {
         </div>
       </div>
 
-      <Inventory/>
+      <InventoryList/>
     </div>
   );
 };
