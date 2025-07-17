@@ -20,7 +20,7 @@ class InventoryValueChart extends React.Component {
       this.destroyChart();
       this.createChart();
     }
-  }
+  } 
 
   componentWillUnmount() {
     this.destroyChart();

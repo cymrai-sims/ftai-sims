@@ -1,6 +1,6 @@
 import React from 'react'
 
-import useInsightLogic from '../hooks/useInsightLogic'; 
+import useInsightLogic from '../../hooks/useInsightLogic'; 
 
 const AiInsights = () => {
 const { insight, loading, error } = useInsightLogic(true); 
