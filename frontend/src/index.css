@@ -217,3 +217,17 @@ li, li a{
     url('./Images/abstract.png') no-repeat center center;
   background-size: cover;
 }
+
+/* Inventory Values */
+.inventory-list {
+  padding: 1rem;
+}
+
+.inventory-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--dark-main-light);
+}
+
+.inventory-list li:last-child {
+  border-bottom: none;
+}

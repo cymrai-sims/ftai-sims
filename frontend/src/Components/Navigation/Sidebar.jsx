@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Images
@@ -17,6 +17,8 @@ import { BiArchive } from "react-icons/bi";
 import { IoIosLogOut } from "react-icons/io";
 
 const Sidebar = () => {
+  const [inventoryOpen, setInventoryOpen] = useState(false);
+
   return ( 
     <div className='sidebar fixed top-0 left-0 h-screen w-86 bg-[var(--dark-main)] text-white flex flex-col sidebar-shadow z-50'>
       <div className="logo-bar flex flex-col h-30 border-b-2 border-white/20 px-5 items-center justify-center">
@@ -44,50 +46,101 @@ const Sidebar = () => {
               <span>Dashboard</span>
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/inventory"
-              className={({ isActive }) =>
-                `flex items-center px-10 py-5 gap-4 text-white transition duration-300 ${
-                  isActive
-                    ? 'bg-[var(--dark-main-mid)] gap-6 text-[var(--dark-main)]'
-                    : 'hover:bg-[var(--dark-main-mid)] hover:gap-6 hover:text-[var(--dark-main)]'
-                }`
-              }
+          <li className="group relative">
+            <div
+              className="cursor-pointer flex items-center px-10 py-5 gap-4 hover:bg-[var(--dark-main-mid)] hover:gap-6 hover:text-[var(--dark-main)] transition duration-300"
             >
               <GoChecklist className="text-[2rem]" />
               <span>Inventory</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/inventory"
-              className={({ isActive }) =>
-                `flex items-center px-10 py-5 gap-4 text-white transition duration-300 ${
-                  isActive
-                    ? 'bg-[var(--dark-main-mid)] gap-6 text-[var(--dark-main)]'
-                    : 'hover:bg-[var(--dark-main-mid)] hover:gap-6 hover:text-[var(--dark-main)]'
-                }`
-              }
-            >
-              <GoChecklist className="text-[2rem]" />
-              <span>Strangers & Runners</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/inventory"
-              className={({ isActive }) =>
-                `flex items-center px-10 py-5 gap-4 text-white transition duration-300 ${
-                  isActive
-                    ? 'bg-[var(--dark-main-mid)] gap-6 text-[var(--dark-main)]'
-                    : 'hover:bg-[var(--dark-main-mid)] hover:gap-6 hover:text-[var(--dark-main)]'
-                }`
-              }
-            >
-              <GoChecklist className="text-[2rem]" />
-              <span>Min&Max</span>
-            </NavLink>
+            </div>
+            {/* Submenu: absolutely positioned, hidden by default, shown on hover */}
+            <ul className="absolute left-0 top-full ml-0 w-full mt-0 flex flex-col gap-1 text-sm transition-all duration-300 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto bg-[var(--dark-main)] z-10">
+              <li>
+                <NavLink
+                  to="/inventory/global-inventory"
+                  className={({ isActive }) =>
+                    `block px-2 py-2 pl-20 rounded hover:bg-[var(--dark-main-mid)] ${
+                      isActive ? 'text-[var(--dark-main)] bg-[var(--dark-main-mid)]' : ''
+                    }`
+                  }
+                >
+                  Global Inventory
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/inventory/usage-insights"
+                  className={({ isActive }) =>
+                    `block px-2 py-2 pl-20 rounded hover:bg-[var(--dark-main-mid)] ${
+                      isActive ? 'text-[var(--dark-main)] bg-[var(--dark-main-mid)]' : ''
+                    }`
+                  }
+                >
+                  {/* Stock Performance */}
+                  Usage Insights
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/inventory/min-max"
+                  className={({ isActive }) =>
+                    `block px-2 py-2 pl-20 rounded hover:bg-[var(--dark-main-mid)] ${
+                      isActive ? 'text-[var(--dark-main)] bg-[var(--dark-main-mid)]' : ''
+                    }`
+                  }
+                >
+                  Min&Max Levels
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/inventory/eoq"
+                  className={({ isActive }) =>
+                    `block px-2 py-2 pl-20 rounded hover:bg-[var(--dark-main-mid)] ${
+                      isActive ? 'text-[var(--dark-main)] bg-[var(--dark-main-mid)]' : ''
+                    }`
+                  }
+                >
+                  Economic Order Quantity
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/inventory/forecast"
+                  className={({ isActive }) =>
+                    `block px-2 py-2 pl-20 rounded hover:bg-[var(--dark-main-mid)] ${
+                      isActive ? 'text-[var(--dark-main)] bg-[var(--dark-main-mid)]' : ''
+                    }`
+                  }
+                >
+                  Forecast
+                </NavLink>
+              </li>
+              <li>
+                <NavLink 
+                  to="/inventory/forecast"
+                  className={({ isActive }) =>
+                    `block px-2 py-2 pl-20 rounded hover:bg-[var(--dark-main-mid)] ${
+                      isActive ? 'text-[var(--dark-main)] bg-[var(--dark-main-mid)]' : ''
+                    }`
+                  }
+                >
+                  Work Orders
+                </NavLink>
+              </li>
+              <li>
+                <NavLink 
+                  to="/inventory/forecast"
+                  className={({ isActive }) =>
+                    `block px-2 py-2 pl-20 rounded hover:bg-[var(--dark-main-mid)] ${
+                      isActive ? 'text-[var(--dark-main)] bg-[var(--dark-main-mid)]' : ''
+                    }`
+                  }
+                >
+                  Scrap Rates
+                </NavLink>
+              </li>
+            </ul>
           </li>
           <li>
             <NavLink
@@ -97,11 +150,11 @@ const Sidebar = () => {
                   isActive
                     ? 'bg-[var(--dark-main-mid)] gap-6 text-[var(--dark-main)]'
                     : 'hover:bg-[var(--dark-main-mid)] hover:gap-6 hover:text-[var(--dark-main)]'
-                }`
+                }`                                                           
               }
             >
               <BiArchive className="text-[2rem]" />
-              <span>Procurement</span>
+              <span>EOQ & Holding Costs</span>
             </NavLink>
           </li>
           <li>
