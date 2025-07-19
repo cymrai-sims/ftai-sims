@@ -69,12 +69,12 @@ class PieChart extends React.Component {
 
 const InventoryStoreValues = () => {
   return (
-    <div>
+    <div className="flex flex-col px-5 py-5 gap-5">
       <h4 className="pb-10">Inventory Store Charts</h4>
-      <div className="flex flex-row gap-5 justify-between items-center w-full">
+      <div className="flex flex-row gap-5 justify-between items-center max-w-full">
         {storeConfigs.map((store, idx) => (
-          <div key={store.name} className="bg-white p-4 flex flex-col items-center w-full">
-            <h5 className="font-semibold mb-2 text-[var(--dark-main)] w-full">{store.name}</h5>
+          <div key={store.name} className="bg-white p-4 flex flex-col items-center">
+            <h5 className="font-semibold mb-2 text-[var(--dark-main)] pb-4">{store.name}</h5>
             <PieChart data={generateInventoryData()} colors={store.colorSet} />
             {/* <div className="mt-2 text-xs text-gray-700">
               {["On PO", "On-hand", "On Reserve"].map((label, i) => (
