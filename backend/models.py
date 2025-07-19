@@ -4,7 +4,7 @@ db = SQLAlchemy()
 
 # Define the Inventory model
 class Inventory(db.Model):
-    __tablename__ = 'Inventory'
+    __tablename__ = ''
 
     # id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     DESCRIPTION = db.Column(db.String(255), primary_key=True)
