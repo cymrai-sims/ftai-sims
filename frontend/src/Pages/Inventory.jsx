@@ -5,8 +5,8 @@ import InventoryList from '../Components/Inventory/InventoryList';
 
 const Inventory = () => {
   return (
-    <div className="py-10 px-5">
-      <InventoryList/>
+    <div className="flex flex-col px-10 py-5 gap-5">
+      <InventoryList/>         
     </div>
   );
 };

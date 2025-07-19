@@ -1,4 +1,0 @@
-page= '/' , 'accounts', 'inventory', 'maintenance' , 'procurement' ,'requisitions' , 'support_chat', 'dashboard' 
-role ='admin', 'supervisor', 'technician'
-insight prompt+ "tell user good morning"
-chat: " speak with user in chiniese language"
