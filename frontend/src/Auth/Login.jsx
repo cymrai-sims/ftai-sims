@@ -3,8 +3,8 @@ import { AuthContext } from "../Providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 // Images
-import logo from "../Images/ftai-aviation.avif";
-import software from "../Images/software.png";
+import logo from "../assets/Images/ftai-aviation.avif";
+import software from "../assets/Images/software.png";
 
 const Login = () => {
   const { loginUser, loading, user } = useContext(AuthContext);

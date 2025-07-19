@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Images
-import logo from '../../Images/full_logo_1.png';
+import logo from '../../assets/Images/full_logo_1.png';
 
 // Icons#
 import { IoHomeOutline } from "react-icons/io5";
