@@ -69,7 +69,7 @@ class PieChart extends React.Component {
 
 const InventoryStoreValues = () => {
   return (
-    <div className="flex flex-col px-5 py-5 gap-5">
+    <div className="flex flex-col px-5 py-5 gap-5 overflow-x-auto">
       <h4 className="pb-10">Inventory Store Charts</h4>
       <div className="flex flex-row gap-5 justify-between items-center max-w-full">
         {storeConfigs.map((store, idx) => (

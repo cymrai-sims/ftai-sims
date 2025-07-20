@@ -82,6 +82,7 @@ body {
 
 /* Track */ 
 *::-webkit-scrollbar { 
+  height: 4px;
   width: 8px; 
 } 
 
@@ -89,6 +90,7 @@ body {
   background: var(--dark-main);
   border-radius: 4px;
   width: 8px;
+  height: 3px;
 } 
 
 *::-webkit-scrollbar-thumb { 

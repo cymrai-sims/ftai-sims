@@ -85,7 +85,7 @@ class InventoryValueChart extends React.Component {
   render() {
     // Tabular key
     return (
-      <div className="flex flex-row gap-4 w-full">
+      <div className="flex flex-row gap-4 w-full overflow-x-auto">
         <div className="w-full">
           <canvas ref={this.chartRef} />
         </div>
