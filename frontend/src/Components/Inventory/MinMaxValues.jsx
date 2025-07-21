@@ -24,7 +24,7 @@ const MinMaxValues = () => {
 
   return (
     <div className="w-full max-w-xl mx-auto p-6">
-      <h4 className="font-bold text-lg mb-6 text-gray-700 pb-10">Min & Max Values</h4>
+      <h3 className="font-bold mb-6 text-gray-700 pb-10">Min & Max Values</h3>
       {/* Labels section */}
       <div className="mb-6 flex flex-row justify-evenly items-center gap-4 pb-5">
         {Object.keys(LABELS).map((key) => (

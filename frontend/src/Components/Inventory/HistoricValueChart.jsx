@@ -103,7 +103,8 @@ class HistoricValueChart extends React.Component {
 
   render() {
     return (
-      <div className="w-full">
+      <div className="w-full p-2">
+        <h3 className='text-[var(--dark-main)] py-3  px-2 font-bold'>Historic Inventory Value Overview</h3>
         <canvas ref={this.chartRef} />
       </div>
     );

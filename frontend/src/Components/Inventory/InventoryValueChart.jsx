@@ -85,41 +85,45 @@ class InventoryValueChart extends React.Component {
   render() {
     // Tabular key
     return (
-      <div className="flex flex-row gap-4 w-full overflow-x-auto">
-        <div className="w-full">
-          <canvas ref={this.chartRef} />
-        </div>
-        <div className="mt-6">
-          <table className="min-w-full text-left border border-gray-200 rounded">
-            <thead>
-              <tr className="bg-gray-50">
-                <th className="py-2 px-4 font-semibold text-gray-700">Location</th>
-                <th className="py-2 px-4 font-semibold text-gray-700">Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.props.data.map((item, idx) => (
-                <tr key={item.label} className="border-t border-gray-100">
-                  <td className="py-2 px-4 flex items-center gap-2">
-                    <span
-                      style={{
-                        display: 'inline-block',
-                        width: '0.8rem',
-                        height: '0.8rem',
-                        // borderRadius: '50%',
-                        background: this.props.colors[idx],
-                        marginRight: 6
-                      }}
-                    />
-                    {item.label}
-                  </td>
-                  <td className="py-2 px-4 font-bold text-gray-900">{item.value}</td>
+      <>
+        <h3 className='text-[var(--dark-main)] py-3  px-2 font-bold'>Value Statistics</h3>
+        <div className="flex flex-row gap-4 w-full overflow-x-auto">
+          <div className="w-full">
+            <canvas ref={this.chartRef} />
+          </div>
+          <div className="mt-6">
+            <table className="min-w-full text-left border border-gray-200 rounded">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="py-2 px-4 font-semibold text-gray-700">Location</th>
+                  <th className="py-2 px-4 font-semibold text-gray-700">Value</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {this.props.data.map((item, idx) => (
+                  <tr key={item.label} className="border-t border-gray-100">
+                    <td className="py-2 px-4 flex items-center gap-2">
+                      <span
+                        style={{
+                          display: 'inline-block',
+                          width: '0.8rem',
+                          height: '0.8rem',
+                          // borderRadius: '50%',
+                          background: this.props.colors[idx],
+                          marginRight: 6
+                        }}
+                      />
+                      {item.label}
+                    </td>
+                    <td className="py-2 px-4 font-bold text-gray-900">{item.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      </>
+      
     );
   }
 }

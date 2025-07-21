@@ -16,8 +16,8 @@ const InventoryList = () => {
 
   return (
     <div>
-      <h4 className='pb-5 text-[var(--dark-main)]'>Global Inventory List</h4>
-      <div className="p-6 px-0">
+      <h3 className='pb-5 text-[var(--dark-main)] font-bold'>Global Inventory List</h3>
+      <div className="p-2">
         {loading ? (
           <div>Loading...</div>
         ) : (
