@@ -8,7 +8,17 @@ import { GiAutoRepair } from "react-icons/gi";
 import { IoReceiptOutline } from "react-icons/io5";
 import { RiUserSettingsLine } from "react-icons/ri";
 import { TfiHelpAlt } from "react-icons/tfi";
-import { ChevronDown } from "lucide-react";
+import { 
+  ChevronDown, 
+  CalendarDays, 
+  LayoutDashboard, 
+  PackageCheck, 
+  Package, 
+  Wrench, 
+  ReceiptText, 
+  UserRoundCog, 
+  Headset 
+} from "lucide-react";
 
 // Images
 import logo from "../../assets/Images/full_logo_1.png";
@@ -16,14 +26,14 @@ import logo from "../../assets/Images/full_logo_1.png";
 const menuItems = [
   {
     id: "dashboard",
-    icon: IoHomeOutline,
+    icon: LayoutDashboard,
     label: "Dashboard",
     to: "/",
     badge: null,
   },
   {
     id: "inventory",
-    icon: GoChecklist,
+    icon: PackageCheck,
     label: "Inventory",
     submenu: [
       {
@@ -45,33 +55,39 @@ const menuItems = [
   },
   {
     id: "procurement",
-    icon: BiArchive,
+    icon: Package,
     label: "EOQ & Holding Costs",
     to: "/procurement",
   },
   {
     id: "maintenance",
-    icon: GiAutoRepair,
+    icon: Wrench,
     label: "Maintenance",
     to: "/maintenance",
   },
   {
     id: "requisitions",
-    icon: IoReceiptOutline,
+    icon: ReceiptText,
     label: "Requisitions",
     to: "/requisitions",
   },
   {
     id: "settings",
-    icon: RiUserSettingsLine,
+    icon: UserRoundCog,
     label: "Settings",
     to: "/settings",
   },
   {
     id: "support",
-    icon: TfiHelpAlt,
+    icon: Headset,
     label: "Support",
     to: "/support",
+  },
+  {
+    id: "calendar",
+    icon: CalendarDays,
+    label: "Calendar",
+    to: "/calendar",
   },
 ];
 
@@ -90,7 +106,7 @@ const Sidebar = ({ collapsed = false }) => {
   return (
     <div
       className={`h-screen bg-[var(--dark-main)] text-white flex flex-col sidebar-shadow z-50 transition-all duration-300 overflow-hidden ${
-        collapsed ? "w-20" : "w-72"
+        collapsed ? "w-20" : "w-64"
       }`}
     >
       {/* Logo */}

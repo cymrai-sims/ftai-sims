@@ -1,59 +1,129 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useState } from "react";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-const generateRandomValues = () => ({
-  aboveMax: Math.floor(Math.random() * 100) + 50,
-  belowMin: Math.floor(Math.random() * 50) + 10,
-  target: Math.floor(Math.random() * 80) + 20
-});
+// Register Chart.js components
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const BAR_COLORS = {
-  aboveMax: "bg-red-500",
-  belowMin: "bg-blue-500",
-  target: "bg-green-500"
+// Helper to generate random part names
+const randomPartName = () => {
+  const adjectives = [
+    "Turbo", "Opti", "Flex", "Ultra", "Maxi", "Nano", "Velo", "Quantum", "Delta", "Prime",
+    "Eco", "Rapid", "Pro", "Mini", "Mega", "Alpha", "Beta", "Core", "Fusion", "Hyper", "Sonic"
+  ];
+  const nouns = [
+    "Rotor", "Valve", "Sensor", "Module", "Bracket", "Panel", "Drive", "Coupler", "Gear", "Switch",
+    "Bolt", "Guard", "Unit", "Filter", "Pin", "Ring", "Tube", "Seal", "Blade", "Grid"
+  ];
+  return (
+    adjectives[Math.floor(Math.random() * adjectives.length)] +
+    " " +
+    nouns[Math.floor(Math.random() * nouns.length)]
+  );
 };
 
-const LABELS = {
-  aboveMax: "Above Max",
-  belowMin: "Below Min",
-  target: "Target"
+const generateParts = (count, type) => {
+  return Array.from({ length: count }, (_, idx) => ({
+    partNumber: `${type}-${idx + 1}`,
+    name: randomPartName(),
+    inventory:
+      type === "Runner"
+        ? Math.floor(Math.random() * 500) + 500 // Runners: high inventory
+        : Math.floor(Math.random() * 20) + 1, // Strangers: low inventory
+  }));
 };
 
-const MinMaxValues = () => {
-  const values = useMemo(generateRandomValues, []);
-  const maxValue = Math.max(values.aboveMax, values.belowMin, values.target);
+const UsageInsights = () => {
+  const [runners, setRunners] = useState([]);
+  const [strangers, setStrangers] = useState([]);
+
+  useEffect(() => {
+    setRunners(generateParts(100, "Runner"));
+    setStrangers(generateParts(100, "Stranger"));
+  }, []);
+
+  const runnersData = {
+    labels: runners.map((part) => part.name),
+    datasets: [
+      {
+        label: "Runner Inventory",
+        data: runners.map((part) => part.inventory),
+        backgroundColor: "rgba(37,99,235,0.7)",
+        borderColor: "rgba(37,99,235,1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const strangersData = {
+    labels: strangers.map((part) => part.name),
+    datasets: [
+      {
+        label: "Stranger Inventory",
+        data: strangers.map((part) => part.inventory),
+        backgroundColor: "rgba(220,38,38,0.7)",
+        borderColor: "rgba(220,38,38,1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: true },
+    },
+    scales: {
+      x: {
+        display: false, // Hide x axis labels for clarity with so many bars
+      },
+      y: {
+        beginAtZero: true,
+        ticks: { color: "#666" },
+        grid: { color: "#eee" },
+      },
+    },
+  };
 
   return (
-    <div className="w-full max-w-xl mx-auto p-6">
-      <h3 className="font-bold mb-6 text-gray-700 pb-10">Min & Max Values</h3>
-      {/* Labels section */}
-      <div className="mb-6 flex flex-row justify-evenly items-center gap-4 pb-5">
-        {Object.keys(LABELS).map((key) => (
-          <div key={key} className="flex flex-col items-center">
-            <span className={`w-4 h-4 inline-block mb-2 ${BAR_COLORS[key]}`}></span>
-            <span className="text-base font-semibold text-gray-800">{LABELS[key]}</span>
+    <div className="max-w-4xl mx-auto">
+      <h3 className="pb-2 text-gray-800 font-bold">
+        Inventory: Strangers & Runners (Top & Bottom 100 Parts)
+      </h3>
+      <div className="flex flex-col gap-12">
+        <div>
+          <h4 className="text-blue-700 font-semibold mb-2">
+            Top 100 Runners (High Inventory)
+          </h4>
+          <div className="bg-blue-50 rounded shadow p-4">
+            <Bar data={runnersData} options={options} height={200} />
+            <div className="text-xs text-gray-600 mt-2">
+              Each bar represents a runner part with a random name.
+            </div>
           </div>
-        ))}
-      </div>
-      {/* Bar chart with gaps */}
-      <div className="flex flex-col space-y-12">
-        {Object.keys(values).map((key) => (
-          <div key={key} className="flex items-center w-full group relative">
-            <div
-              className={`h-12 rounded ${BAR_COLORS[key]} transition-all`}
-              style={{
-                width: `${(values[key] / maxValue) * 100}%`,
-                minWidth: "2.5rem"
-              }}
-            ></div>
-            {/* Value appears only on hover */}
-            <span className="ml-4 text-xl font-bold text-gray-900 opacity-0 group-hover:opacity-100 pointer-events-none">
-              {values[key]}
-            </span>
+        </div>
+        <div>
+          <h4 className="text-red-700 font-semibold mb-2">
+            Bottom 100 Strangers (Low Inventory)
+          </h4>
+          <div className="bg-red-50 rounded shadow p-4">
+            <Bar data={strangersData} options={options} height={100} />
+            <div className="text-xs text-gray-600 mt-2">
+              Each bar represents a stranger part with a random name.
+            </div>
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default MinMaxValues;
+export default UsageInsights;

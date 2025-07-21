@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Search, Filter, Plus, Sun, Bell, Settings, User, ChevronDown } from 'lucide-react';
+import { AlignLeft, Search, Filter, Plus, Sun, Bell, Settings, User, ChevronDown } from 'lucide-react';
 
 const Navbar = ({ sidebarCollapsed, onToggleSidebar }) => {
   return (
@@ -12,10 +12,10 @@ const Navbar = ({ sidebarCollapsed, onToggleSidebar }) => {
             className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             onClick={onToggleSidebar}
           >
-            <Menu className="w-5 h-5"/>
+            <AlignLeft className="w-5 h-5"/>
           </button>
 
-          <div className="hidden md:block">
+          <div className="hidden md:block pl-5">
             <h1 className="text-2xl font-black text-slate-800 dark:text-white">Dashboard</h1>
             <p>Welcome Back, User!</p>
           </div>

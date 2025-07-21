@@ -15,6 +15,9 @@ import MyAccount from "./Pages/MyAccount";
 import Support from "./Pages/Support";
 import Requisitions from "./Pages/Requisitions";
 import NotFound from './pages/NotFound';
+import WorkOrders from './pages/WorkOrders';
+import Calendar from './pages/Calendar';
+import Settings from './pages/Settings';
 
 // Auth Pages
 import Login from './Auth/Login';
@@ -37,10 +40,13 @@ const App = () => {
         <Route path="/inventory/global-inventory" element={<AppLayout><Inventory /></AppLayout>} />
         <Route path="/inventory/usage-insights" element={<AppLayout><UsageInsights /></AppLayout>} />
         <Route path="/inventory/min-max" element={<AppLayout><MinMax /></AppLayout>} />
+        <Route path="/inventory/work-orders" element={<AppLayout><WorkOrders /></AppLayout>} />
         <Route path="/maintenance" element={<AppLayout><Maintenance /></AppLayout>} />
         <Route path="/accounts" element={<AppLayout><MyAccount /></AppLayout>} />
         <Route path="/support" element={<AppLayout><Support /></AppLayout>} />
         <Route path="/requisitions" element={<AppLayout><Requisitions /></AppLayout>} />
+        <Route path="/calendar" element={<AppLayout><Calendar /></AppLayout>} />
+        <Route path="/settings" element={<AppLayout><Settings /></AppLayout>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

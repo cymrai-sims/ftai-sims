@@ -8,13 +8,13 @@ import InventoryList from '../Components/Inventory/InventoryList';
 import InventoryValues from '../Components/Inventory/InventoryValues';
 import InventoryStoreValues from '../Components/Inventory/InventoryStoreValues';
 import MinMaxValues from '../Components/Inventory/MinMaxValues';
+import WorkOrderList from '../Components/Inventory/WorkOrderList';
 
 // Icons
 import { RiCustomerService2Line } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi2";
 import { IoReceipt } from "react-icons/io5";
 import { FaMoneyBills } from "react-icons/fa6";
-import WorkOrders from '../Components/Inventory/WorkOrders';
 
 const notificationData = [
   { title: 'Customers', value: '1,240', change: '+2.7%', icon: <HiUsers className="text-[var(--blue-main)] text-3xl" /> },
@@ -73,18 +73,16 @@ const Home = () => {
       </div>
 
       <div className="flex flex-row gap-5">
-        <div className="w-1/3 bg-white p-2">
+        <div className="w-3/5 bg-white p-2">
           <MinMaxValues/>
         </div>
-        <div className="w-1/3 bg-white p-2">
+        <div className="w-2/5 bg-white p-2">
           
-        </div>
-        <div className="w-1/3 bg-white p-2">
         </div>
       </div>
 
       <div className="p-10 shadow-md bg-white">
-        <WorkOrders />
+        <WorkOrderList />
       </div>
     </div>
   );
