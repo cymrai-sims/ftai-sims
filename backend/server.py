@@ -43,6 +43,24 @@ db.init_app(app)
 def home():
     return "Flask server is running!"
 
+# Get Inventory Data
+@app.route('/api/v1/inventory', methods=['GET'])
+def get_inventories():
+    try:
+        inventory = Inventory.query.limit(100).all()
+        data = []
+        for r in inventory:
+            print("Raw record:", r)
+            d = r.to_dict()
+            print("Converted:", d)
+            data.append(d)
+        return jsonify({"status": "success", "data": data})
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({"status": "error", "error": str(e)}), 500
+
+
 # Test database connection
 @app.route('/api/v1/db-test', methods=['GET'])
 def test_db_connection():

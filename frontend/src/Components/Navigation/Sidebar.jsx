@@ -47,7 +47,7 @@ const menuItems = [
         to: "/inventory/usage-insights",
       },
       { id: "min-max", label: "Min&Max Levels", to: "/inventory/min-max" },
-      { id: "eoq", label: "Economic Order Quantity", to: "/inventory/eoq" },
+      { id: "eoq", label: "Economic Order Quantity", to: "/inventory/economic-order-quantities" },
       { id: "forecast", label: "Forecast", to: "/inventory/forecast" },
       { id: "work-orders", label: "Work Orders", to: "/inventory/work-orders" },
       { id: "scrap-rates", label: "Scrap Rates", to: "/inventory/scrap-rates" },
