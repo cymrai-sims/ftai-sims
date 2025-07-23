@@ -6,7 +6,7 @@ const InventoryList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/v1/inventory')
+    fetch('/api/v1/global_inventory/inventory')
       .then(res => res.json())
       .then(json => {
         setInventories(json.data || []);
