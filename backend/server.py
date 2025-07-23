@@ -3,8 +3,11 @@ from flask import Flask, jsonify
 from dotenv import load_dotenv
 from sqlalchemy import text
 from flask_cors import CORS
-from urllib.parse import quote_plus
- 
+from api_route.api_blueprint_registry import register_all_blueprints_v1
+
+load_dotenv()
+
+#from models import db, Inventories
 from models import db, Inventory
 from api_route.api_blueprint_registry import register_all_blueprints_v1
 from urllib.parse import quote_plus
