@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Bar } from "react-chartjs-2";
 import {
-  Chart as ChartJS,
+  Chart,
   BarElement,
   CategoryScale,
   LinearScale,
@@ -9,121 +9,60 @@ import {
   Legend,
 } from "chart.js";
 
-// Register Chart.js components
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+// Register the required Chart.js components
+Chart.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-// Helper to generate random part names
-const randomPartName = () => {
-  const adjectives = [
-    "Turbo", "Opti", "Flex", "Ultra", "Maxi", "Nano", "Velo", "Quantum", "Delta", "Prime",
-    "Eco", "Rapid", "Pro", "Mini", "Mega", "Alpha", "Beta", "Core", "Fusion", "Hyper", "Sonic"
-  ];
-  const nouns = [
-    "Rotor", "Valve", "Sensor", "Module", "Bracket", "Panel", "Drive", "Coupler", "Gear", "Switch",
-    "Bolt", "Guard", "Unit", "Filter", "Pin", "Ring", "Tube", "Seal", "Blade", "Grid"
-  ];
-  return (
-    adjectives[Math.floor(Math.random() * adjectives.length)] +
-    " " +
-    nouns[Math.floor(Math.random() * nouns.length)]
-  );
-};
+const locations = ["Montreal", "Miami", "AAR"];
 
-const generateParts = (count, type) => {
-  return Array.from({ length: count }, (_, idx) => ({
-    partNumber: `${type}-${idx + 1}`,
-    name: randomPartName(),
-    inventory:
-      type === "Runner"
-        ? Math.floor(Math.random() * 500) + 500 // Runners: high inventory
-        : Math.floor(Math.random() * 20) + 1, // Strangers: low inventory
+// Generate random values for min, max, and on target for each location
+const randomData = () =>
+  locations.map(() => ({
+    min: Math.floor(Math.random() * 30) + 10,
+    max: Math.floor(Math.random() * 30) + 40, 
+    onTarget: Math.floor(Math.random() * 30) + 20, 
   }));
+
+const dataPoints = randomData();
+
+const data = {
+  labels: locations,
+  datasets: [
+    {
+      label: "Below Min",
+      data: dataPoints.map((d) => d.min),
+      backgroundColor: "rgba(248, 198, 48, 0.8)",
+    },
+    {
+      label: "Above Max",
+      data: dataPoints.map((d) => d.max),
+      backgroundColor: "rgba(7, 46, 64, 0.8)",
+    },
+    {
+      label: "On Target",
+      data: dataPoints.map((d) => d.onTarget),
+      backgroundColor: "rgba(243, 107, 33, 0.8)",
+    },
+  ],
 };
 
-const UsageInsights = () => {
-  const [runners, setRunners] = useState([]);
-  const [strangers, setStrangers] = useState([]);
-
-  useEffect(() => {
-    setRunners(generateParts(100, "Runner"));
-    setStrangers(generateParts(100, "Stranger"));
-  }, []);
-
-  const runnersData = {
-    labels: runners.map((part) => part.name),
-    datasets: [
-      {
-        label: "Runner Inventory",
-        data: runners.map((part) => part.inventory),
-        backgroundColor: "rgba(37,99,235,0.7)",
-        borderColor: "rgba(37,99,235,1)",
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const strangersData = {
-    labels: strangers.map((part) => part.name),
-    datasets: [
-      {
-        label: "Stranger Inventory",
-        data: strangers.map((part) => part.inventory),
-        backgroundColor: "rgba(220,38,38,0.7)",
-        borderColor: "rgba(220,38,38,1)",
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: { display: false },
-      tooltip: { enabled: true },
+const options = {
+  responsive: true,
+  plugins: {
+    legend: { position: "top" },
+    tooltip: { enabled: true },
+  },
+  scales: {
+    y: {
+      beginAtZero: true,
     },
-    scales: {
-      x: {
-        display: false, // Hide x axis labels for clarity with so many bars
-      },
-      y: {
-        beginAtZero: true,
-        ticks: { color: "#666" },
-        grid: { color: "#eee" },
-      },
-    },
-  };
-
-  return (
-    <div className="max-w-4xl mx-auto">
-      <h3 className="pb-2 text-gray-800 font-bold">
-        Inventory: Strangers & Runners (Top & Bottom 100 Parts)
-      </h3>
-      <div className="flex flex-col gap-12">
-        <div>
-          <h4 className="text-blue-700 font-semibold mb-2">
-            Top 100 Runners (High Inventory)
-          </h4>
-          <div className="bg-blue-50 rounded shadow p-4">
-            <Bar data={runnersData} options={options} height={200} />
-            <div className="text-xs text-gray-600 mt-2">
-              Each bar represents a runner part with a random name.
-            </div>
-          </div>
-        </div>
-        <div>
-          <h4 className="text-red-700 font-semibold mb-2">
-            Bottom 100 Strangers (Low Inventory)
-          </h4>
-          <div className="bg-red-50 rounded shadow p-4">
-            <Bar data={strangersData} options={options} height={100} />
-            <div className="text-xs text-gray-600 mt-2">
-              Each bar represents a stranger part with a random name.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  },
 };
 
-export default UsageInsights;
+const MinMaxValues = () => (
+  <div className="w-full p-4">
+    <h3 className="font-bold pb-5">Inventory Insights by location</h3>
+    <Bar data={data} options={options} />
+  </div>
+);
+
+export default MinMaxValues;

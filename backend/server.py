@@ -45,7 +45,7 @@ db.init_app(app)
 def home():
     return "Flask server is running!"
 
-
+# Get Inventory Data
 @app.route('/api/v1/inventory', methods=['GET'])
 def get_inventories():
     try:
