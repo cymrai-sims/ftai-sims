@@ -37,7 +37,7 @@ def handle_dashboard_insight():
         return jsonify( "Missing message, or page")
     try:
         reply = models[model_name].get_insight(page, message)
-        print(reply)
+      
         return jsonify({"reply": reply})
     except Exception as e:
         return jsonify({"reply": f"Error: {str(e)}"}), 500
