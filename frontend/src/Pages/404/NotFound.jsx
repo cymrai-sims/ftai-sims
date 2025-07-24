@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // Images
-import oops from '../assets/Images/oops.png';
+import oops from '../../assets/Images/oops.png';
 
 const NotFound = () => {
   return (

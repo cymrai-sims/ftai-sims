@@ -126,10 +126,10 @@ const Sidebar = ({ collapsed = false }) => {
 
       {/* Menu */}
       <nav className="menu-bar flex-1 flex flex-col justify-between">
-        <ul className="flex flex-col gap-2 mt-10 pt-10">
+        <ul className="flex flex-col gap-3 py-10">
           {/* Store Menu heading: only when expanded */}
           {!collapsed && (
-            <li className="font-light uppercase text-cl text-gray-400 heading pl-10">
+            <li className="font-light uppercase text-cl text-gray-400 heading pl-5">
               Store Menu
             </li>
           )}
@@ -138,7 +138,7 @@ const Sidebar = ({ collapsed = false }) => {
               {item.submenu ? (
                 <>
                   <div
-                    className={`cursor-pointer flex items-center px-5 py-2 gap-4 hover:bg-[var(--dark-main-mid)] transition duration-300 select-none ${
+                    className={`cursor-pointer flex items-center px-5 py-3 gap-4 hover:bg-[var(--dark-main-mid)] transition duration-300 select-none ${
                       expanded.has(item.id)
                         ? "bg-[var(--dark-main-mid)] text-[var(--dark-main)]"
                         : ""
@@ -146,7 +146,7 @@ const Sidebar = ({ collapsed = false }) => {
                     onClick={() => toggleExpand(item.id)}
                   >
                     {/* Icon always shown */}
-                    <item.icon className="text-[1.6rem]" />
+                    <item.icon className="text-xl" />
                     {/* Show label and chevron only when expanded */}
                     {!collapsed && (
                       <>
@@ -162,13 +162,13 @@ const Sidebar = ({ collapsed = false }) => {
                   </div>
                   {/* Submenu: only show if expanded and not collapsed */}
                   {!collapsed && expanded.has(item.id) && (
-                    <ul className="ml-8 mt-1 flex flex-col gap-1 text-sm">
+                    <ul className="mt-1 flex flex-col gap-1 text-sm">
                       {item.submenu.map((sub) => (
                         <li key={sub.id}>
                           <NavLink
                             to={sub.to}
                             className={({ isActive }) =>
-                              `block px-2 py-2 pl-12 rounded hover:bg-[var(--dark-main-mid)] transition-all duration-200 ${
+                              `block px-2 py-3 pl-15 hover:bg-[var(--dark-main-mid)] transition-all duration-200 ${
                                 isActive
                                   ? "text-[var(--dark-main)] bg-[var(--dark-main-mid)] font-semibold"
                                   : "text-white"

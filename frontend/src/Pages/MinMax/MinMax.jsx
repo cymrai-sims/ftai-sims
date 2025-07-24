@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import MinMaxTable from '../Components/Inventory/MinMaxTable';
+import MinMaxTable from '../../Components/Inventory/MinMaxTable';
 
 const MinMax = () => {
   return (

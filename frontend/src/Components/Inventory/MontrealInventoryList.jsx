@@ -77,7 +77,6 @@ const columns = [
     sortable: true,
     wrap: true,
   },
-  // Put Warehouse here for filtering
   {
     name: "Warehouse",
     selector: (row) => row.Warehouse,
