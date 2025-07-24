@@ -14,8 +14,8 @@ const ChatBox = ({ isOpen, selectedAgent }) => {
   } = useChatLogic(isOpen, selectedAgent);
 
   const agentNames = {
-    'local_ollama': 'SIMS-AI',
-    'gemini': 'Gemini',
+    local_ollama: "SIMS-AI",
+    gpt: "GPT-4.1",
   };
 
   return (
