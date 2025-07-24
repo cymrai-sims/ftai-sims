@@ -1,5 +1,5 @@
 all_prompts = {
-    "/": {
+    "dashboard": {
         "insight": {
             "admin": "tell user good morning",
             "supervisor": "tell user good morning",

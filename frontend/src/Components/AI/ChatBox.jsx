@@ -9,7 +9,7 @@ const ChatBox = ({ isOpen, selectedAgent }) => {
 
   const agentNames = {
     local_ollama: "SIMS-AI",
-    gemini: "Gemini",
+    gpt: "GPT-4.1",
   };
 
   return (
@@ -33,7 +33,7 @@ const ChatBox = ({ isOpen, selectedAgent }) => {
               <h6 className="text-sm text-gray-100">
                 {selectedAgent === "SIMS-AI"
                   ? "Get insights and make decisions with SIMS data."
-                  : "Ask Gemini for analytics and trends."}
+                  : "Ask GPT-4.1 for analytics and trends."}
               </h6>
             </div>
           </div>
