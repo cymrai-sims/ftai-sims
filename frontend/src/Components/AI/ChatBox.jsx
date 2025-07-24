@@ -35,9 +35,9 @@ const ChatBox = ({ isOpen, selectedAgent }) => {
             <div>
               <h5 className="font-bold">Chat with {agentNames[selectedAgent]}</h5>
               <h6 className="text-sm text-gray-100">
-                {selectedAgent === 'SIMS-AI'
-                  ? 'Get insights and make decisions with SIMS data.'
-                  : 'Ask Gemini for analytics and trends.'}
+                {selectedAgent === "SIMS-AI"
+                  ? "Get insights and make decisions with SIMS data."
+                  : "Ask GPT-4.1 for analytics and trends."}
               </h6>
             </div>
           </div>
