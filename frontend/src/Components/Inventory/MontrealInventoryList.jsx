@@ -77,16 +77,16 @@ const columns = [
     sortable: true,
     wrap: true,
   },
-  // Put Source here for filtering
+  // Put Warehouse here for filtering
   {
-    name: "Source",
-    selector: (row) => row.Source,
+    name: "Warehouse",
+    selector: (row) => row.Warehouse,
     sortable: true,
     wrap: true,
   },
   {
-    name: "Warehouse",
-    selector: (row) => row.Warehouse,
+    name: "Source",
+    selector: (row) => row.Source,
     sortable: true,
     wrap: true,
   },
@@ -122,45 +122,45 @@ const columns = [
   },
 ];
 
-const InventoryList = () => {
+const MontrealInventoryList = () => {
   const [inventories, setInventories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filteredInventories, setFilteredInventories] = useState([]);
-  const [sourceFilter, setSourceFilter] = useState("all");
-  const [sources, setSources] = useState([]);
+  const [warehouseFilter, setWarehouseFilter] = useState("all");
+  const [warehouses, setWarehouses] = useState([]);
 
   // Fetch and initialize data
   useEffect(() => {
     setLoading(true);
-    fetch("/api/v1/global_inventory/inventory")
+    fetch("/api/v1/montreal_inventory/inventory")
       .then((res) => res.json())
       .then((json) => {
         const data = json.data || [];
-        // Sort by Source by default
+        // Sort by Warehouse by default
         data.sort((a, b) => {
-          if (a.Source && b.Source)
-            return a.Source.localeCompare(b.Source);
-          if (a.Source) return -1;
-          if (b.Source) return 1;
+          if (a.Warehouse && b.Warehouse)
+            return a.Warehouse.localeCompare(b.Warehouse);
+          if (a.Warehouse) return -1;
+          if (b.Warehouse) return 1;
           return 0;
         });
         setInventories(data);
-        // Get unique sources
-        const uniqueSources = [
-          ...new Set(data.map((inv) => inv.Source).filter(Boolean)),
+        // Get unique warehouses
+        const uniqueWarehouses = [
+          ...new Set(data.map((inv) => inv.Warehouse).filter(Boolean)),
         ];
-        setSources(uniqueSources);
+        setWarehouses(uniqueWarehouses);
         setLoading(false);
       });
   }, []);
 
-  // Filtering logic: search & source
+  // Filtering logic: search & warehouse
   useEffect(() => {
     let filtered = inventories;
-    if (sourceFilter !== "all") {
+    if (warehouseFilter !== "all") {
       filtered = filtered.filter(
-        (inv) => inv.Source === sourceFilter
+        (inv) => inv.Warehouse === warehouseFilter
       );
     }
     if (search) {
@@ -173,12 +173,12 @@ const InventoryList = () => {
       );
     }
     setFilteredInventories(filtered);
-  }, [search, inventories, sourceFilter]);
+  }, [search, inventories, warehouseFilter]);
 
   return (
     <div className="p-4">
       <h3 className="pb-5 text-[var(--dark-main)] font-bold">
-        Global Inventory List
+        Montreal Inventory List
       </h3>
       <div className="flex flex-col md:flex-row md:items-center gap-2 mb-4">
         <input
@@ -191,25 +191,25 @@ const InventoryList = () => {
         <div className="flex flex-wrap gap-2">
           <button
             className={`px-3 py-1 rounded ${
-              sourceFilter === "all"
+              warehouseFilter === "all"
                 ? "bg-[var(--dark-main)] text-white"
                 : "bg-gray-200 text-[var(--dark-main)]"
             }`}
-            onClick={() => setSourceFilter("all")}
+            onClick={() => setWarehouseFilter("all")}
           >
-            All Sources
+            All Warehouses
           </button>
-          {sources.map((src) => (
+          {warehouses.map((wh) => (
             <button
-              key={src}
+              key={wh}
               className={`px-3 py-1 rounded ${
-                sourceFilter === src
+                warehouseFilter === wh
                   ? "bg-[var(--dark-main)] text-white"
                   : "bg-gray-200 text-[var(--dark-main)]"
               }`}
-              onClick={() => setSourceFilter(src)}
+              onClick={() => setWarehouseFilter(wh)}
             >
-              {src}
+              {wh}
             </button>
           ))}
         </div>
@@ -219,7 +219,7 @@ const InventoryList = () => {
           columns={columns}
           data={filteredInventories}
           progressPending={loading}
-          defaultSortFieldId={columns.findIndex(c => c.name === "Source") + 1}
+          defaultSortFieldId={columns.findIndex(c => c.name === "Warehouse") + 1}
           defaultSortAsc={true}
           pagination
           highlightOnHover
@@ -233,4 +233,4 @@ const InventoryList = () => {
   );
 };
 
-export default InventoryList;
+export default MontrealInventoryList;

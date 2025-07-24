@@ -1,7 +1,6 @@
 import logging
 from flask import jsonify
 
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)  
 
