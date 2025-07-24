@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
- 
+import React, { useMemo, useState } from "react";
+
 // The table data structure matches your screenshot's columns
 const TABLE_ROWS = [
   {
@@ -20,7 +20,7 @@ const TABLE_ROWS = [
     mtlWIP: 0,
     orderRedistribute: 22,
     matGroup: "HY HARDWALL",
-    group: "LPC AIRFOILS"
+    group: "LPC AIRFOILS",
   },
   {
     description: "LOCK-BLADE STG 3",
@@ -40,7 +40,7 @@ const TABLE_ROWS = [
     mtlWIP: 0,
     orderRedistribute: 13,
     matGroup: "HY HARDWALL",
-    group: "LPC AIRFOILS"
+    group: "LPC AIRFOILS",
   },
   {
     description: "LOCK-BLADE STG 4",
@@ -60,7 +60,7 @@ const TABLE_ROWS = [
     mtlWIP: 0,
     orderRedistribute: 14,
     matGroup: "HY HARDWALL",
-    group: "LPC AIRFOILS"
+    group: "LPC AIRFOILS",
   },
   {
     description: "LOCK-BLADE STG 5",
@@ -80,141 +80,139 @@ const TABLE_ROWS = [
     mtlWIP: 0,
     orderRedistribute: 18,
     matGroup: "HY HARDWALL",
-    group: "LPC AIRFOILS"
+    group: "LPC AIRFOILS",
   },
   // ... (add all other rows from image here, preserving grouping and structure!)
+  // add here
 ];
- 
+
 // Columns config for react-data-table-component
 const columns = [
   {
     name: "DESCRIPTION",
-    selector: row => row.description,
+    selector: (row) => row.description,
     sortable: true,
     grow: 2,
   },
   {
     name: "Partial QPE",
-    selector: row => row.partialQPE,
+    selector: (row) => row.partialQPE,
     sortable: true,
     right: true,
   },
   {
     name: "AVG Replace",
-    selector: row => row.avgReplace,
+    selector: (row) => row.avgReplace,
     sortable: true,
     right: true,
   },
   {
     name: "Avg RO_SR",
-    selector: row => row.avgRO_SR,
+    selector: (row) => row.avgRO_SR,
     sortable: true,
     right: true,
   },
   {
     name: "AVG Replenishment",
-    selector: row => row.avgReplenishment,
+    selector: (row) => row.avgReplenishment,
     sortable: true,
     right: true,
   },
   {
     name: "AVG WO Per Week",
-    selector: row => row.avgWOWeek,
+    selector: (row) => row.avgWOWeek,
     sortable: true,
     right: true,
   },
   {
     name: "MAX Replenishment",
-    selector: row => row.maxReplenishment,
+    selector: (row) => row.maxReplenishment,
     sortable: true,
     right: true,
   },
   {
     name: "MIN (LPC 5B)",
-    selector: row => row.minLPC5B,
+    selector: (row) => row.minLPC5B,
     sortable: true,
     right: true,
   },
   {
     name: "SET EQUIV (21 5B)",
-    selector: row => row.setEquiv,
+    selector: (row) => row.setEquiv,
     sortable: true,
     right: true,
   },
   {
     name: "MAX (21 5B)",
-    selector: row => row.max21_5B,
+    selector: (row) => row.max21_5B,
     sortable: true,
     right: true,
   },
   {
     name: "QTY_AVAI",
-    selector: row => row.qtyAVAI,
+    selector: (row) => row.qtyAVAI,
     sortable: true,
     right: true,
   },
   {
     name: "AAR_QTY",
-    selector: row => row.aarQty,
+    selector: (row) => row.aarQty,
     sortable: true,
     right: true,
   },
   {
     name: "PO_OPEN",
-    selector: row => row.poOpen,
+    selector: (row) => row.poOpen,
     sortable: true,
     right: true,
   },
   {
     name: "RO_OPEN",
-    selector: row => row.roOpen,
+    selector: (row) => row.roOpen,
     sortable: true,
     right: true,
   },
   {
     name: "MTL_WIP",
-    selector: row => row.mtlWIP,
+    selector: (row) => row.mtlWIP,
     sortable: true,
     right: true,
   },
   {
     name: "Order/(Redistribute)",
-    selector: row => row.orderRedistribute,
+    selector: (row) => row.orderRedistribute,
     sortable: true,
     right: true,
   },
 ];
- 
+
 import DataTable from "react-data-table-component";
- 
+
 const MinMaxTable = () => {
   // Optionally implement filtering/searching/grouping if you want!
   const [search, setSearch] = useState("");
- 
+
   // Filtered by search string
   const filteredRows = useMemo(() => {
     if (!search) return TABLE_ROWS;
-    return TABLE_ROWS.filter(row =>
-      Object.values(row)
-        .join(" ")
-        .toLowerCase()
-        .includes(search.toLowerCase())
+    return TABLE_ROWS.filter((row) =>
+      Object.values(row).join(" ").toLowerCase().includes(search.toLowerCase())
     );
   }, [search]);
- 
+
   return (
-<div className="p-4">
-<h3 className="pb-5 text-[var(--dark-main)] font-bold">
+    <div className="p-4">
+      <h3 className="pb-5 text-[var(--dark-main)] font-bold">
         Inventory Min/Max Table
-</h3>
-<input
+      </h3>
+      <input
         type="text"
         placeholder="Search..."
         className="border-b border-gray-400 px-2 py-1 rounded-none w-full md:w-72 focus:outline-none focus:border-b-2 focus:border-gray-600 mb-4"
         value={search}
-        onChange={e => setSearch(e.target.value)}
+        onChange={(e) => setSearch(e.target.value)}
       />
-<DataTable
+      <DataTable
         columns={columns}
         data={filteredRows}
         pagination
@@ -225,8 +223,8 @@ const MinMaxTable = () => {
         dense
         noDataComponent={<div className="py-4">No records found.</div>}
       />
-</div>
+    </div>
   );
 };
- 
+
 export default MinMaxTable;
