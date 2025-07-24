@@ -1,42 +1,25 @@
-from api_route.chat import (
+from api_route.ai_apis import ai_blueprint_map
+from api_route.database_apis import all_inventory_blueprints
 
-#chat 
-    accounts_chat_bp,
-    dashboard_chat_bp,
-    inventory_chat_bp,
-    maintenance_chat_bp,
-    procurement_chat_bp,
-    requisitions_chat_bp,
-    support_chat_bp,
-## Insight
-    accounts_insight_bp,
-    dashboard_insight_bp,
-    inventory_insight_bp,
-    maintenance_insight_bp,
-    procurement_insight_bp,
-    requisitions_insight_bp,
-    support_insight_bp,
+from api_route.database_apis.global_inventory.inventory import global_inventory_inventory_bp
+def register_all_ai_blueprints_v1(app):
+    for name, types in ai_blueprint_map.items():
+        app.register_blueprint(types["chat"], url_prefix=f"/api/v1/chat/{name}")
+        app.register_blueprint(types["insight"], url_prefix=f"/api/v1/insight/{name}")
 
 
-)
+
+def register_all_inventory_blueprints_v1(app):
+    base_prefix = "/api/v1"
+    for location, modules in all_inventory_blueprints.items():
+        for module_name, blueprint in modules.items():
+            url_prefix = f"{base_prefix}/{location}/{module_name}"
+      
+            app.register_blueprint(blueprint, url_prefix=url_prefix)
+
+
 
 def register_all_blueprints_v1(app):
+    register_all_ai_blueprints_v1(app)
+    register_all_inventory_blueprints_v1(app)
 
-##Chatbot
-    app.register_blueprint(accounts_chat_bp, url_prefix="/api/v1/chat/accounts")
-    app.register_blueprint(dashboard_chat_bp, url_prefix="/api/v1/chat/dashboard")
-    app.register_blueprint(inventory_chat_bp, url_prefix="/api/v1/chat/inventory")
-    app.register_blueprint(maintenance_chat_bp, url_prefix="/api/v1/chat/maintenance")
-    app.register_blueprint(procurement_chat_bp, url_prefix="/api/v1/chat/procurement")
-    app.register_blueprint(requisitions_chat_bp, url_prefix="/api/v1/chat/requisitions")
-    app.register_blueprint(support_chat_bp, url_prefix="/api/v1/chat/support")
-
-## Insight 
-
-    app.register_blueprint(accounts_insight_bp, url_prefix="/api/v1/insight/accounts")
-    app.register_blueprint(dashboard_insight_bp, url_prefix="/api/v1/insight/dashboard")
-    app.register_blueprint(inventory_insight_bp, url_prefix="/api/v1/insight/inventory")
-    app.register_blueprint(maintenance_insight_bp, url_prefix="/api/v1/insight/maintenance")
-    app.register_blueprint(procurement_insight_bp, url_prefix="/api/v1/insight/procurement")
-    app.register_blueprint(requisitions_insight_bp, url_prefix="/api/v1/insight/requisitions")
-    app.register_blueprint(support_insight_bp, url_prefix="/api/v1/insight/support")
