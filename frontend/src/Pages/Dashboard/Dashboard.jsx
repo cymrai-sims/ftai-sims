@@ -12,11 +12,17 @@ import WorkOrderList from "../../Components/Inventory/WorkOrderList";
 import PartsInsights from "../../Components/Inventory/PartsInsights";
 import AiInsights from "../../Components/AI/AiInsights";
 
+// New Components
+import ConditionReserved from "../../Components/UsageInsights/ConditionReserved";
+
 // Icons
 import { RiCustomerService2Line } from "react-icons/ri";
 import { HiUsers } from "react-icons/hi2";
 import { IoReceipt } from "react-icons/io5";
 import { FaMoneyBills } from "react-icons/fa6";
+import QuantityAvailable from "../../Components/UsageInsights/QuantityAvailable";
+import ModuleRepairCost from "../../Components/Repairs/ModuleRapairCost";
+import MonthlyRepairCost from "../../Components/Repairs/MonthlyRepairCost";
 
 const notificationData = [
   {
@@ -115,6 +121,25 @@ const Dashboard = () => {
           <PartsInsights />
         </div>
       </div>
+
+      <div className="flex flex-row gap-5">
+        <div className="w-1/2 bg-white p-2 w-full">
+         <ConditionReserved />
+        </div>
+         <div className="w-1/2 bg-white p-2 w-full">
+         <QuantityAvailable />
+        </div>    
+      </div>
+
+      <div className="flex flex-row gap-5">
+        <div className="w-1/2 bg-white p-2 w-full">
+         <ModuleRepairCost />
+        </div>
+         <div className="w-1/2 bg-white p-2 w-full">
+         <MonthlyRepairCost />
+        </div>    
+      </div>
+
 
       <div className="p-10 shadow-md bg-white">
         <WorkOrderList />
