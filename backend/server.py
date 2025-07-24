@@ -49,7 +49,7 @@ def home():
 @app.route('/api/v1/inventory', methods=['GET'])
 def get_inventories():
     try:
-        inventory = Inventory.query.limit(100).all()
+        inventory = Inventory.query.all()
         data = []
         for r in inventory:
             print("Raw record:", r)

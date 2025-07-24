@@ -10,6 +10,7 @@ import InventoryStoreValues from "../Components/Inventory/InventoryStoreValues";
 import MinMaxValues from "../Components/Inventory/MinMaxValues";
 import WorkOrderList from "../Components/Inventory/WorkOrderList";
 import PartsInsights from "../Components/Inventory/PartsInsights";
+import AiInsights from "../Components/AI/AiInsights";
 
 // Icons
 import { RiCustomerService2Line } from "react-icons/ri";
@@ -67,6 +68,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col p-2 gap-5">
+      <AiInsights />
       <h3 className="font-bold mt-3 pb-5 text-2xl text-[var(--dark-main)]">
         Dashboard
       </h3>
