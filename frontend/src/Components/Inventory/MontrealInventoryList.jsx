@@ -187,31 +187,18 @@ const MontrealInventoryList = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <div className="flex flex-wrap gap-2">
-          <button
-            className={`px-3 py-1 rounded ${
-              warehouseFilter === "all"
-                ? "bg-[var(--dark-main)] text-white"
-                : "bg-gray-200 text-[var(--dark-main)]"
-            }`}
-            onClick={() => setWarehouseFilter("all")}
-          >
-            All Warehouses
-          </button>
+        <select
+          value={warehouseFilter}
+          onChange={(e) => setWarehouseFilter(e.target.value)}
+          className="border border-gray-400 px-2 py-1 rounded w-full md:w-72 focus:outline-none focus:border-2 focus:border-gray-600"
+        >
+          <option value="all">All Warehouses</option>
           {warehouses.map((wh) => (
-            <button
-              key={wh}
-              className={`px-3 py-1 rounded ${
-                warehouseFilter === wh
-                  ? "bg-[var(--dark-main)] text-white"
-                  : "bg-gray-200 text-[var(--dark-main)]"
-              }`}
-              onClick={() => setWarehouseFilter(wh)}
-            >
+            <option key={wh} value={wh}>
               {wh}
-            </button>
+            </option>
           ))}
-        </div>
+        </select>
       </div>
       <div className="overflow-x-auto">
         <DataTable

@@ -19,6 +19,22 @@ const conditionReserveData = [
   // Add more codes as needed to match your chart
 ];
 
+// Your custom color palette from CSS variables
+const customColors = [
+  "#072E40",   // --dark-main
+  "#F36B21",   // --orange-main
+  "#1296BA",   // --blue-main
+  "#AFDCED",   // --variant-blue
+  "#F8C630",   // --variant-orange
+  "#FFF",      // --white
+  "#000",      // --black
+  "#71828B",   // --dark-main-mid
+  "#EEAA88",   // --orange-main-mid
+  "#8EBFD4",   // --blue-main-mid
+  "#D4E9F3",   // --variant-blue-mid
+  "#F7DD97",   // --variant-orange-mid
+];
+
 const getPieData = (inventory) => {
   const totals = {};
   let totalQty = 0;
@@ -32,19 +48,12 @@ const getPieData = (inventory) => {
   const labels = Object.keys(totals);
   const values = Object.values(totals);
 
-  // Tailwind-inspired color palette
-  const twColors = [
-    "#2563eb", "#1d4ed8", "#db2777", "#f59e42", "#10b981", "#f59e42", "#f43f5e",
-    "#a21caf", "#bbf7d0", "#f87171", "#eab308", "#6366f1", "#be185d", "#22c55e",
-    "#fde68a", "#06b6d4", "#fca5a5", "#3b82f6", "#84cc16", "#facc15"
-  ];
-
   return {
     labels,
     datasets: [
       {
         data: values,
-        backgroundColor: labels.map((_, i) => twColors[i % twColors.length]),
+        backgroundColor: labels.map((_, i) => customColors[i % customColors.length]),
         borderColor: "#fff",
         borderWidth: 2,
       },
@@ -66,7 +75,7 @@ const getPieOptions = (inventory) => {
       legend: {
         position: "right",
         labels: {
-          font: { size: 14 },
+          font: { size: 14, family: "Helvetica, 'Helvetica Neue', Arial, sans-serif" },
         },
       },
       tooltip: {
@@ -90,8 +99,8 @@ const ConditionReserved = () => {
 
   return (
     <div className="flex flex-col p-4">
-      <h3 className="pb-5 font-bold text-gray-800">
-        Percentage of QTY_RESERVED by Condition Code
+      <h3 className="pb-5 font-bold" style={{ color: "var(--dark-main)", fontFamily: "var(--primary-font)" }}>
+        Percentage of Quantity Reserved by Condition
       </h3>
       <div className="w-full min-h-[20rem] flex">
         <Pie data={pieData} options={pieOptions} />

@@ -5,6 +5,12 @@ import DataTable from "react-data-table-component";
 const columns = [
   {
     name: "Part Number",
+    selector: (row) => row.PN,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Part Number Group",
     selector: (row) => row.PN_GROUP,
     sortable: true,
     wrap: true,
@@ -27,12 +33,12 @@ const columns = [
     sortable: true,
     right: true,
   },
-  {
-    name: "Location",
-    selector: (row) => row.LOCATION,
-    sortable: true,
-    right: true,
-  },
+  // {
+  //   name: "Location",
+  //   selector: (row) => row.LOCATION,
+  //   sortable: true,
+  //   right: true,
+  // },
 ];
 
 const AARInventoryList = () => {
@@ -101,31 +107,18 @@ const AARInventoryList = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <div className="flex flex-wrap gap-2">
-          <button
-            className={`px-3 py-1 rounded ${
-              locationFilter === "all"
-                ? "bg-[var(--dark-main)] text-white"
-                : "bg-gray-200 text-[var(--dark-main)]"
-            }`}
-            onClick={() => setlocationFilter("all")}
-          >
-            All Locations
-          </button>
-          {locations.map((src) => (
-            <button
-              key={src}
-              className={`px-3 py-1 rounded ${
-                locationFilter === src
-                  ? "bg-[var(--dark-main)] text-white"
-                  : "bg-gray-200 text-[var(--dark-main)]"
-              }`}
-              onClick={() => setLocationFilter(src)}
-            >
-              {src}
-            </button>
+        <select
+          value={locationFilter}
+          onChange={(e) => setLocationFilter(e.target.value)}
+          className="border border-gray-400 px-2 py-1 rounded w-full md:w-72 focus:outline-none focus:border-2 focus:border-gray-600"
+        >
+          <option value="all">All Locations</option>
+          {locations.map((loc) => (
+            <option key={loc} value={loc}>
+              {loc}
+            </option>
           ))}
-        </div>
+        </select>
       </div>
       <div className="overflow-x-auto">
         <DataTable

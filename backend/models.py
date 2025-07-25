@@ -159,6 +159,7 @@ class Aar(db.Model):
 
     DESCRIPTION = db.Column(db.String(100), primary_key=True)
     PN_GROUP = db.Column(db.String(255))
+    PN = db.Column(db.String(255))
     MAT_GROUP_1 = db.Column(db.String(255))
     QTY_AVAILABLE = db.Column(db.Integer)
     LOCATION = db.Column(db.String(255))

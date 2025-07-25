@@ -28,6 +28,11 @@ import EOQs from './Pages/EOQs/EOQs';
 import WorkOrderItem from './Pages/WorkOrders/WorkOrderItem';
 import InventoryItem from './Pages/Inventory/InventoryItem';
 
+// Inventory Components
+import AARInventoryList from "./Pages/Inventory/AAR/AARInventory";
+import MontrealInventoryList from "./Pages/Inventory/Montreal/MontrealInventory";
+import MiamiInventoryList from "./Pages/Inventory/Miami/MiamiInventory";
+
 // Auth Pages
 import Login from './Auth/Login';
 // import Signup from './Auth/SignUp';
@@ -69,6 +74,11 @@ const App = () => {
         {/* <Route path="work-order/work-orders/:id" element={<AppLayout><WorkOrderItem /></AppLayout>} /> */}
         <Route path="work-order/work-order-temp" element={<AppLayout><WorkOrderItem /></AppLayout>} />
         <Route path="inventory/inventory-temp" element={<AppLayout><InventoryItem /></AppLayout>} />
+
+        {/* Inventory Lists */}
+        <Route path="/inventory/aar-inventory" element={<AppLayout><AARInventoryList /></AppLayout>} />
+        <Route path="/inventory/montreal-inventory" element={<AppLayout><MontrealInventoryList /></AppLayout>} />
+        <Route path="/inventory/miami-inventory" element={<AppLayout><MiamiInventoryList /></AppLayout>} />
       </Routes>
     </Router>
   );

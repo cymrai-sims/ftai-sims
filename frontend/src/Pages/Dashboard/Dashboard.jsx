@@ -140,9 +140,8 @@ const Dashboard = () => {
         </div>    
       </div>
 
-
       <div className="p-10 shadow-md bg-white">
-        <WorkOrderList />
+        <InventoryList />
       </div>
     </div>
   );

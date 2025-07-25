@@ -18,8 +18,8 @@ const getPieData = () => {
       {
         data: values,
         backgroundColor: [
-          "#22c55e", 
-          "#d1d5db", 
+          "#1296BA", 
+          "#F8C630", 
         ],
         borderColor: "#fff",
         borderWidth: 2,
@@ -60,7 +60,7 @@ const QuantityAvailable = () => {
   return (
     <div className="flex flex-col p-4">
       <h3 className="pb-5 font-bold text-gray-800">
-        Share of QTY_AVAILABLE: NE (New) vs Other Conditions
+        Share of Quantity Available: NE (New) vs Other Conditions
       </h3>
       <div className="w-full min-h-[16rem] flex">
         <Pie data={pieData} options={pieOptions} />
