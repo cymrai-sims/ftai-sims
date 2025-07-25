@@ -12,13 +12,13 @@ const data = [
   { module: "Non-HVM", cost: 500000000 },
 ];
 
-// Colors for each module type
+// Color scheme from your CSS variables
 const colors = [
-  "#24134f", // CORE (deep purple)
-  "#6d2874", // FAN (purple)
-  "#b44e7a", // QEC / LRU (pink)
-  "#e97b76", // LPT (orange-pink)
-  "#eeb383"  // Non-HVM (orange)
+  "#072E40",  // --dark-main (CORE)
+  "#F36B21",  // --orange-main (FAN)
+  "#1296BA",  // --blue-main (QEC / LRU)
+  "#AFDCED",  // --variant-blue (LPT)
+  "#F8C630",  // --variant-orange (Non-HVM)
 ];
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -37,7 +37,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 const ModuleRepairCost = () => (
   <div className="w-full h-[400px] p-4 flex flex-col items-stretch">
-    <h3 className="text-black pb-5 font-bold mb-4 pb-2">
+    <h3 className="text-[var(--dark-main)] pb-5 font-bold mb-4 pb-2">
       Top Modules by Total Repair Cost
     </h3>
     <div className="flex-1">
@@ -45,7 +45,7 @@ const ModuleRepairCost = () => (
         <BarChart
           data={data}
           layout="vertical"
-          margin={{ top: 10, right: 40, left: 80, bottom: 40 }}
+          margin={{ top: 10, right: 40, bottom: 40 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis

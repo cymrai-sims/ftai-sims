@@ -38,7 +38,10 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 const MonthlyRepairCost = () => (
-  <div className="w-full h-[400px] p-4 pb-5 flex bg-white rounded-lg shadow-md">
+  <div className="w-full h-[400px] p-4 pb-5 flex flex-col items-stretch">
+    <h3 className="text-black pb-5 font-bold mb-4 pb-2">
+      Top Modules by Total Repair Cost
+    </h3>
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
         data={data}
@@ -73,19 +76,19 @@ const MonthlyRepairCost = () => (
         <Bar
           dataKey="cost"
           barSize={48}
-          fill="#60a5fa"
+          fill="#072E40"
           label={{
             position: "top",
             formatter: (value) => `$${value.toLocaleString()}`,
             fontSize: 12,
           }}
         />
-        <Label
+        {/* <Label
           value="Total Repair Cost Per Month"
           position="top"
           offset={10}
-          className={`text-lg mb-5 text-gray-800`}
-        />
+          className={`align-left mb-5 text-gray-800`}
+        /> */}
       </BarChart>
     </ResponsiveContainer>
   </div>

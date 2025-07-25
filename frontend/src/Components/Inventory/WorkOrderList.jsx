@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 
-// Place your work orders data at the top so you can update it later
+// Work orders data
 const WORK_ORDERS = [
   {
     orderNo: "CHUZT1A",
@@ -54,7 +54,7 @@ const statusColor = {
   "Not Started": "text-red-500",
 };
 
-// Filters for status
+// Status filter options
 const statusFilters = [
   { label: "All", value: "all" },
   { label: "Complete", value: "Complete" },
@@ -99,23 +99,21 @@ const columns = [
 const WorkOrderList = () => {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
-  const [workOrders, setWorkOrders] = useState(WORK_ORDERS);
 
   // Filtering logic
-  const filteredOrders = workOrders.filter((order) => {
-    // Search filter (case-insensitive, all fields)
-    const matchesSearch =
-      search === "" ||
-      Object.values(order)
-        .join(" ")
-        .toLowerCase()
-        .includes(search.toLowerCase());
-
+  const filteredOrders = WORK_ORDERS.filter((order) => {
     // Status filter
     const matchesStatus =
       statusFilter === "all" ? true : order.status === statusFilter;
 
-    return matchesSearch && matchesStatus;
+    // Search filter (case-insensitive, all fields)
+    const matchesSearch =
+      search === "" ||
+      Object.values(order)
+        .map((v) => String(v).toLowerCase())
+        .some((field) => field.includes(search.toLowerCase()));
+
+    return matchesStatus && matchesSearch;
   });
 
   return (
@@ -132,19 +130,17 @@ const WorkOrderList = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
         <div className="flex gap-2">
-          {statusFilters.map((f) => (
-            <button
-              key={f.value}
-              className={`px-3 py-1 rounded ${
-                statusFilter === f.value
-                  ? "bg-[var(--dark-main)] text-white"
-                  : "bg-gray-200 text-[var(--dark-main)]"
-              }`}
-              onClick={() => setStatusFilter(f.value)}
-            >
-              {f.label}
-            </button>
-          ))}
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="border border-gray-400 px-3 py-1 rounded focus:outline-none focus:border-2 focus:border-[var(--dark-main)]"
+          >
+            {statusFilters.map((f) => (
+              <option key={f.value} value={f.value}>
+                {f.label}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
       <div className="overflow-x-auto">

@@ -31,17 +31,17 @@ const data = {
     {
       label: "Below Min",
       data: dataPoints.map((d) => d.min),
-      backgroundColor: "rgba(248, 198, 48, 0.8)",
+      backgroundColor: "rgb(248, 198, 48)",
     },
     {
       label: "Above Max",
       data: dataPoints.map((d) => d.max),
-      backgroundColor: "rgba(7, 46, 64, 0.8)",
+      backgroundColor: "rgb(7, 46, 64)",
     },
     {
       label: "On Target",
       data: dataPoints.map((d) => d.onTarget),
-      backgroundColor: "rgba(243, 107, 33, 0.8)",
+      backgroundColor: "rgb(243, 107, 33)",
     },
   ],
 };

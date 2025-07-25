@@ -8,10 +8,15 @@ const generateInventoryData = () => [
   Math.floor(Math.random() * 30) + 5    // On Reserve
 ];
 
+// Use your specified color codes:
+const COLOR_PO = "#F36B21";      // --orange-main
+const COLOR_ONHAND = "#1296BA";  // --blue-main
+const COLOR_RESERVE = "#072E40"; // --dark-main
+
 const storeConfigs = [
-  { name: "Miami", colorSet: ["#F8C630", "#AFDCED", "#072E40"] },
-  { name: "Montreal", colorSet: ["#F8C630", "#AFDCED", "#072E40"] },
-  { name: "AAR", colorSet: ["#F8C630", "#AFDCED", "#072E40"] }
+  { name: "Miami", colorSet: [COLOR_PO, COLOR_ONHAND, COLOR_RESERVE] },
+  { name: "Montreal", colorSet: [COLOR_PO, COLOR_ONHAND, COLOR_RESERVE] },
+  { name: "AAR", colorSet: [COLOR_PO, COLOR_ONHAND, COLOR_RESERVE] }
 ];
 
 class PieChart extends React.Component {
@@ -43,6 +48,9 @@ class PieChart extends React.Component {
           legend: {
             display: true,
             position: "bottom",
+            labels: {
+              font: { family: "var(--primary-font)", size: 13 }
+            }
           },
         },
         responsive: true,
@@ -60,7 +68,7 @@ class PieChart extends React.Component {
 
   render() {
     return (
-      <div className="w-full h-full items-center justify-center">
+      <div className="w-full h-full items-center justify-center min-h-[200px]">
         <canvas ref={this.chartRef} />
       </div>
     );
@@ -70,25 +78,25 @@ class PieChart extends React.Component {
 const InventoryStoreValues = () => {
   return (
     <div className="flex flex-col p-2 gap-5 overflow-x-auto">
-      <h3 className="pb-3 font-bold">Inventory Store Charts</h3>
+      <h3 className="pb-3 font-bold text-[var(--dark-main)]">Inventory Store Charts</h3>
       <div className="flex flex-row gap-5 justify-between items-center max-w-full">
         {storeConfigs.map((store, idx) => (
-          <div key={store.name} className="bg-white p-4 flex flex-col items-center">
+          <div key={store.name} className="bg-white p-4 flex flex-col items-center rounded shadow min-w-[260px]">
             <h5 className="font-semibold mb-2 text-[var(--dark-main)] pb-4">{store.name}</h5>
             <PieChart data={generateInventoryData()} colors={store.colorSet} />
-            {/* <div className="mt-2 text-xs text-gray-700">
+            {/* <div className="mt-3 text-xs text-gray-700 w-full">
               {["On PO", "On-hand", "On Reserve"].map((label, i) => (
-                <div key={label} className="flex items-center gap-2">
+                <div key={label} className="flex items-center gap-2 mb-1">
                   <span
                     style={{
                       display: "inline-block",
                       width: 12,
                       height: 12,
-                      // borderRadius: "50%",
+                      borderRadius: "50%",
                       background: store.colorSet[i]
                     }}
                   />
-                  {label}
+                  <span className="font-medium">{label}</span>
                 </div>
               ))}
             </div> */}

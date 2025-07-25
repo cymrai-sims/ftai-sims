@@ -147,7 +147,7 @@ class InventoryValueChart extends React.Component {
                         />
                         {route ? (
                           <Link
-                            to={"#" + route}
+                            to={route}
                             className="text-[var(--dark-main)] hover:text-[var(--orange-main)] hover:underline"
                             title={`Go to ${item.label} inventory`}
                           >

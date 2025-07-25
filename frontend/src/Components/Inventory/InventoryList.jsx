@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import { Link } from "react-router-dom";
 
 // Table columns
 const columns = [
@@ -8,6 +9,15 @@ const columns = [
     selector: (row) => row.Part_Number,
     sortable: true,
     wrap: true,
+    cell: (row) => (
+      <Link
+        to='/inventory/inventory-temp'
+        rel="noopener noreferrer"
+        className="text-[var(--blue-main)] underline hover:text-[var(--orange-main)]"
+      >
+        {row.Part_Number}
+      </Link>
+    ),
   },
   {
     name: "Part Description",

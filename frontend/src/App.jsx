@@ -5,7 +5,6 @@ import {
   Route,
 } from 'react-router-dom';
 
-
 // Pages
 import Dashboard from './Pages/Dashboard/Dashboard';
 import GlobalInventory from "./Pages/Inventory/GlobalInventory";
