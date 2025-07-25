@@ -100,25 +100,25 @@ const InventoryItem = () => {
               <div className="bg-white w-1/2">
                 <div className="flex flex-row w-full border-b-1 border-white">
                   <div className="bg-[var(--dark-main)] w-full text-white p-3">
-                    Average Annual Demand
+                    Avg Annual Demand
                   </div>
                   <div className="w-full p-3">--</div>
                 </div>
                 <div className="flex flex-row w-full border-b-1 border-white">
                   <div className="bg-[var(--dark-main)] w-full text-white p-3">
-                    Average Weekly Demand
+                    Avg Weekly Demand
                   </div>
                   <div className="w-full p-3">--</div>
                 </div>
                 <div className="flex flex-row w-full border-b-1 border-white">
                   <div className="bg-[var(--dark-main)] w-full text-white p-3">
-                    Average Daily Demand
+                    Avg Daily Demand
                   </div>
                   <div className="w-full p-3">--</div>
                 </div>
                 <div className="flex flex-row w-full border-b-1 border-white">
                   <div className="bg-[var(--dark-main)] w-full text-white p-3">
-                    Average Lead Time
+                    Avg Lead Time
                   </div>
                   <div className="w-full p-3">--</div>
                 </div>
@@ -138,6 +138,18 @@ const InventoryItem = () => {
                     Max
                   </div>
                   <div className="w-full p-3">--</div>
+                </div>
+                <div className="flex flex-row w-full border-b-1 border-white">
+                  <div className="bg-[var(--dark-main)] w-full text-[var(--dark-main)] p-3">
+                    Max
+                  </div>
+                  <div className="w-full p-3"></div>
+                </div>
+                <div className="flex flex-row w-full border-b-1 border-white">
+                  <div className="bg-[var(--dark-main)] w-full text-[var(--dark-main)] p-3">
+                    Max
+                  </div>
+                  <div className="w-full p-3"></div>
                 </div>
               </div>
 
@@ -201,7 +213,6 @@ const InventoryItem = () => {
                   <div className="w-full p-3">--</div>
                 </div>
               </div>
-
             </div>
           </div>
 
