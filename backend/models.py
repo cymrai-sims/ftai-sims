@@ -154,8 +154,8 @@ class Miami(db.Model):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
     
 
-class Aar(db.Model):
-    __tablename__ = 'Aar'
+class AAR(db.Model):
+    __tablename__ = 'AAR'
 
     DESCRIPTION = db.Column(db.String(100), primary_key=True)
     PN_GROUP = db.Column(db.String(255))
