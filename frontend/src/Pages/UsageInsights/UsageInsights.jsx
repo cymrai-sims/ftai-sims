@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import StrangersAndRunners from '../Components/Inventory/StrangersAndRunners';
+import StrangersAndRunners from '../../Components/Inventory/StrangersAndRunners';
 
 const UsageInsights = () => {
   return (

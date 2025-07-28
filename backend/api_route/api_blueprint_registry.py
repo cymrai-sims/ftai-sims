@@ -11,8 +11,6 @@ def register_all_ai_blueprints_v1(app):
         app.register_blueprint(types["chat"], url_prefix=f"/api/v1/chat/{name}")
         app.register_blueprint(types["insight"], url_prefix=f"/api/v1/insight/{name}")
 
-
-
 def register_all_inventory_blueprints_v1(app):
     base_prefix = "/api/v1"
     for location, modules in all_inventory_blueprints.items():
@@ -20,8 +18,6 @@ def register_all_inventory_blueprints_v1(app):
             url_prefix = f"{base_prefix}/{location}/{module_name}"
       
             app.register_blueprint(blueprint, url_prefix=url_prefix)
-
-
 
 def register_all_blueprints_v1(app):
     register_all_ai_blueprints_v1(app)

@@ -7,7 +7,7 @@ from api_route.api_blueprint_registry import register_all_blueprints_v1
 
 load_dotenv()
 
-#from models import db, Inventories
+#from models import db, Inventory
 from models import db, Inventory
 from api_route.api_blueprint_registry import register_all_blueprints_v1
 from urllib.parse import quote_plus
@@ -16,7 +16,6 @@ load_dotenv()
  
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
- 
  
 # Build SQLAlchemy URI
 driver = os.getenv('DB_DRIVER')
@@ -43,9 +42,16 @@ db.init_app(app)
 def home():
     return "Flask server is running!"
 
-
-
-
+# Temporary fetch api
+@app.route('/api/inventory', methods=['GET'])
+def get_inventory():
+    try:
+        with app.app_context():
+            inventory = Inventory.query.limit(100).all()
+            data = [r.to_dict() for r in inventory]
+        return jsonify({"status": "success", "data": data})
+    except Exception as e:
+        return jsonify({"status": "error", "error": str(e)}), 500
 
 # Test database connection
 @app.route('/api/v1/db-test', methods=['GET'])

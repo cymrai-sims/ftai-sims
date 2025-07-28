@@ -5,7 +5,6 @@ import Chat from '../Components/AI/Chat';
 import ChatBox from '../Components/AI/ChatBox';
 import AgentSelector from '../Components/AI/AgentSelector'; // 👈 don't forget this import
 
-// Accept children as props
 const AppLayout = ({ children }) => {
   const [sideBarCollapsed, setSideBarCollapsed] = useState(false);
   const [currentPage, setCurrentPage] = useState('dashboard');
@@ -31,15 +30,16 @@ const AppLayout = ({ children }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-all duration-500">
       <div className="flex h-screen overflow-hidden">
-        <Sidebar  
-          collapsed={sideBarCollapsed} 
-          onToggle={() => setSideBarCollapsed(!sideBarCollapsed)} 
-          currentPage={currentPage} onPageChange={setCurrentPage}
+        <Sidebar
+          collapsed={sideBarCollapsed}
+          onToggle={() => setSideBarCollapsed(!sideBarCollapsed)}
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
         />
         <div className="flex flex-col flex-1 overflow-hidden">
-          <Navbar 
-            sidebarCollapsed={sideBarCollapsed} 
-            onToggleSidebar={() => setSideBarCollapsed(!sideBarCollapsed)} 
+          <Navbar
+            sidebarCollapsed={sideBarCollapsed}
+            onToggleSidebar={() => setSideBarCollapsed(!sideBarCollapsed)}
           />
           <main className="flex-1 overflow-y-auto p-6">
             {children}
@@ -67,6 +67,6 @@ const AppLayout = ({ children }) => {
       )}
     </div>
   );
-}
+};
 
 export default AppLayout;
