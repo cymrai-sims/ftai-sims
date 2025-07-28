@@ -1,6 +1,6 @@
 from flask import Blueprint,request, jsonify
 from llm_module import all_models
-
+import sys
 dashboard_chat_bp = Blueprint('dashboard_chat', __name__)
 dashboard_insight_bp = Blueprint('dashboard_insight', __name__)
 
@@ -13,8 +13,7 @@ def handle_dashboard_chat():
     page = data.get('page','')
     session_id = data.get('session_id', '')
     model_name=data.get('agent', '')
-
-
+    
     if not all([message, session_id, page]):
         return jsonify({"reply": "Missing message, session_id, or page"}), 400
     try:
@@ -32,12 +31,14 @@ def handle_dashboard_insight():
     data = request.get_json()  
     message = data.get('message', '')
     page = data.get('page','')
-    model_name='gemini'  # or 'local_ollama' based on your requirement
+    model_name='gpt' 
+    print(f"Message: {message}, Page: {page}", file=sys.stderr)
+     # or 'local_ollama' based on your requirement
     if not all([message, page]):
-        return jsonify( "Missing message, or page")
+        return jsonify({"reply": "Missing message, or page"}), 400
     try:
         reply = models[model_name].get_insight(page, message)
-      
+        
         return jsonify({"reply": reply})
     except Exception as e:
         return jsonify({"reply": f"Error: {str(e)}"}), 500

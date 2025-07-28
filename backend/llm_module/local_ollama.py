@@ -49,6 +49,7 @@ def get_insight(page, user_input):
     prompt = get_prompt(page, ai_type, role)
     system_message = {"role": "system", "content": prompt}
     messages.insert(0, system_message)
+    
 
     response = chat(
             model=model,

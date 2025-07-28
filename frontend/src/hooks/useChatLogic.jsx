@@ -3,15 +3,15 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { getSessionId, resetSessionId } from '../utils/session';
 
-const apiMap = {
-  '/': 'http://localhost:5000/api/v1/chat/dashboard',
-  '/accounts': 'http://localhost:5000/api/v1/chat/accounts',
-  '/inventory': 'http://localhost:5000/api/v1/chat/inventory',
-  '/procurement': 'http://localhost:5000/api/v1/chat/procurement',
-  '/maintenance': 'http://localhost:5000/api/v1/chat/maintenance',
-  '/requisitions': 'http://localhost:5000/api/v1/chat/requisitions',
-  '/support': 'http://localhost:5000/api/v1/chat/support',
-};
+// const apiMap = {
+//   '/': 'http://localhost:5000/api/v1/chat/dashboard',
+//   '/accounts': 'http://localhost:5000/api/v1/chat/accounts',
+//   '/inventory': 'http://localhost:5000/api/v1/chat/inventory',
+//   '/procurement': 'http://localhost:5000/api/v1/chat/procurement',
+//   '/maintenance': 'http://localhost:5000/api/v1/chat/maintenance',
+//   '/requisitions': 'http://localhost:5000/api/v1/chat/requisitions',
+//   '/support': 'http://localhost:5000/api/v1/chat/support',
+// };
 
 // Accept a 'newChatTrigger' prop to explicitly request a new chat session
 const useChatLogic = (isOpen, selectedAgent, newChatTrigger) => {
@@ -73,7 +73,7 @@ const useChatLogic = (isOpen, selectedAgent, newChatTrigger) => {
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    const endpoint = apiMap[currentPath];
+    const endpoint = 'http://localhost:5000/api/v1/chat/dashboard'//apiMap[currentPath];
 
     const updatedUser = [...messages, { type: 'user', text: input }];
     setMessages(updatedUser);
