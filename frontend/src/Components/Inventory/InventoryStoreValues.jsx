@@ -1,5 +1,6 @@
 import React from "react";
 import Chart from "chart.js/auto";
+import ChatButton from "../AI/ChatButton";
 
 // Helper to generate random numbers for chart data
 const generateInventoryData = () => [
@@ -77,11 +78,15 @@ class PieChart extends React.Component {
 
 const InventoryStoreValues = () => {
   return (
-    <div className="flex flex-col p-2 gap-5 overflow-x-auto">
+    <div className="flex flex-col p-2 gap-5 overflow-x-auto relative group">
+      {/* ChatButton shown only on hover */}
+      <div className="absolute bottom-2 left-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+        <ChatButton onClick={() => alert('Chat opened')} />
+      </div>
       <h3 className="pb-3 font-bold text-[var(--dark-main)]">Inventory Store Charts</h3>
       <div className="flex flex-row gap-5 justify-between items-center max-w-full">
         {storeConfigs.map((store, idx) => (
-          <div key={store.name} className="bg-white p-4 flex flex-col items-center rounded shadow min-w-[260px]">
+          <div key={store.name} className="bg-white p-4 flex flex-col items-center min-w-[260px]">
             <h5 className="font-semibold mb-2 text-[var(--dark-main)] pb-4">{store.name}</h5>
             <PieChart data={generateInventoryData()} colors={store.colorSet} />
             {/* <div className="mt-3 text-xs text-gray-700 w-full">

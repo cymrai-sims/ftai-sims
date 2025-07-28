@@ -1,66 +1,86 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 
-// Dummy stock line data
-const STOCK_LINE = [
-  { stockline: "CHUZT1A", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1B", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1C", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1D", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1E", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1F", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1G", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1H", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1I", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1J", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1AK", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1L", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
-  { stockline: "CHUZT1M", field_1: "#", field_2: "#", field_3: "#", field_4: "#", field_5: "#", field_6: "#", field_7: "#", field_8: "#" },
+// Order types
+const ORDER_TYPES = [
+  "Work Order",
+  "Purchase Order",
+  "Sales Order",
+  "Repair Order",
 ];
 
-// Example status filter; you can adjust values and labels to match your use case
-const statusFilters = [
-  { label: "All", value: "all" },
-  { label: "CHUZT1A", value: "CHUZT1A" },
-  { label: "CHUZT1B", value: "CHUZT1B" },
-  { label: "CHUZT1C", value: "CHUZT1C" },
-  // Add more if you want more filtering options.
+// Dummy data
+const ORDERS = [
+  { orderType: "Work Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Work Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Work Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Work Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Purchase Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Purchase Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Purchase Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Purchase Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Purchase Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Purchase Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Purchase Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Purchase Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Purchase Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Sales Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Sales Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Sales Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Repair Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Work Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Purchase Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Sales Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Repair Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Repair Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Repair Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Repair Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
+  { orderType: "Repair Order", Order_Number: "#", Item: "#", Part_Number: "#", Quantity: "#", Unit_Cost: "#", Total_Cost: "#", Status: "#", Location: "#", Assigned_To: "#", Date_Created: "#", Date_Required: "#", Remarks: "#" },
 ];
 
-// Columns config for react-data-table-component
+// Fisher-Yates shuffle function
+const shuffleArray = (array) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
+
+// DataTable columns
 const columns = [
-  { name: "Stock Line", selector: (row) => row.stockline, sortable: true },
-  { name: "Field 1", selector: (row) => row.field_1, sortable: true },
-  { name: "Field 2", selector: (row) => row.field_2, sortable: true },
-  { name: "Field 3", selector: (row) => row.field_3, sortable: true },
-  { name: "Field 4", selector: (row) => row.field_4, sortable: true },
-  { name: "Field 5", selector: (row) => row.field_5, sortable: true },
-  { name: "Field 6", selector: (row) => row.field_6, sortable: true },
-  { name: "Field 7", selector: (row) => row.field_7, sortable: true },
-  { name: "Field 8", selector: (row) => row.field_8, sortable: true },
+  { name: "Order Type", selector: (row) => row.orderType, sortable: true, wrap: true },
+  { name: "Order Number", selector: (row) => row.Order_Number, sortable: true, wrap: true },
+  { name: "Item", selector: (row) => row.Item, sortable: true, wrap: true },
+  { name: "Part Number", selector: (row) => row.Part_Number, sortable: true, wrap: true },
+  { name: "Quantity", selector: (row) => row.Quantity, sortable: true, right: true },
+  { name: "Unit Cost", selector: (row) => row.Unit_Cost, sortable: true, right: true },
+  { name: "Total Cost", selector: (row) => row.Total_Cost, sortable: true, right: true },
+  { name: "Status", selector: (row) => row.Status, sortable: true, wrap: true },
+  { name: "Location", selector: (row) => row.Location, sortable: true, wrap: true },
+  { name: "Assigned To", selector: (row) => row.Assigned_To, sortable: true, wrap: true },
+  { name: "Date Created", selector: (row) => row.Date_Created, sortable: true, wrap: true },
+  { name: "Date Required", selector: (row) => row.Date_Required, sortable: true, wrap: true },
+  { name: "Remarks", selector: (row) => row.Remarks, sortable: false, wrap: true },
 ];
 
 const ExampleTable = () => {
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [workOrders, setWorkOrders] = useState(STOCK_LINE);
+  const [orderType, setOrderType] = useState("all");
+  const [orders] = useState(() => shuffleArray(ORDERS)); // Shuffled on first render
 
-  // Filtering logic
-  const filteredOrders = workOrders.filter((order) => {
-    // Search filter (case-insensitive, all fields)
+  const filteredOrders = orders.filter((order) => {
     const matchesSearch =
       search === "" ||
       Object.values(order).join(" ").toLowerCase().includes(search.toLowerCase());
-    // Status filter (by stockline)
-    const matchesStatus = statusFilter === "all" ? true : order.stockline === statusFilter;
-    return matchesSearch && matchesStatus;
+    const matchesType = orderType === "all" ? true : order.orderType === orderType;
+    return matchesSearch && matchesType;
   });
 
   return (
     <div className="p-4">
-      <h3 className="pb-5 text-[var(--dark-main)] font-bold">
-        Current Stock Lines
-      </h3>
+      <h3 className="pb-5 text-[var(--dark-main)] font-bold">Orders List</h3>
       <div className="flex flex-col md:flex-row md:items-center gap-2 mb-4">
         <input
           type="text"
@@ -69,21 +89,18 @@ const ExampleTable = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <div className="flex gap-2 flex-wrap">
-          {statusFilters.map((f) => (
-            <button
-              key={f.value}
-              className={`px-3 py-1 rounded ${
-                statusFilter === f.value
-                  ? "bg-[var(--dark-main)] text-white"
-                  : "bg-gray-200 text-[var(--dark-main)]"
-              }`}
-              onClick={() => setStatusFilter(f.value)}
-            >
-              {f.label}
-            </button>
+        <select
+          value={orderType}
+          onChange={(e) => setOrderType(e.target.value)}
+          className="border border-gray-400 px-2 py-1 rounded w-full md:w-60 focus:outline-none focus:border-2 focus:border-gray-600"
+        >
+          <option value="all">All Orders</option>
+          {ORDER_TYPES.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
           ))}
-        </div>
+        </select>
       </div>
       <div className="overflow-x-auto">
         <DataTable
@@ -94,7 +111,7 @@ const ExampleTable = () => {
           striped
           persistTableHead
           responsive
-          noDataComponent={<div className="py-4">No stock lines found.</div>}
+          noDataComponent={<div className="py-4">No orders found.</div>}
         />
       </div>
     </div>

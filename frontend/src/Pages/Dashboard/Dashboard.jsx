@@ -53,7 +53,7 @@ const notificationData = [
   },
 ];
 
-const Dashboard = () => {
+const Dashboard = ({ toggleChat }) => {
   const inventoryValueData = [
     { label: "Montreal", value: 120000 },
     { label: "Miami", value: 42000 },
@@ -96,6 +96,7 @@ const Dashboard = () => {
           <InventoryValueChart
             data={inventoryValueData}
             colors={inventoryValueColors}
+            onChatClick={toggleChat}
           />
         </div>
 

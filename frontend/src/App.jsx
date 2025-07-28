@@ -48,7 +48,11 @@ const App = () => {
         {/* <Route path="/signup" element={<Signup />} /> */}
 
         {/* Routes without authentication */}
-        <Route path="/" element={<AppLayout><Dashboard /></AppLayout>} />
+        <Route path="/" element={
+          <AppLayout>
+            {(props) => <Dashboard {...props} />}
+          </AppLayout>
+        } />
         <Route path="/procurement" element={<AppLayout><Procurement /></AppLayout>} />
 
         {/* Inventory */}
