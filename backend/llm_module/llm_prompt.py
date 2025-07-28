@@ -1,12 +1,12 @@
 all_prompts = {
-    "/": {
+    "dashboard": {
         "insight": {
             "admin": "tell user good morning",
             "supervisor": "tell user good morning",
             "technician": "tell user good morning"
         },
         "chat": {
-            "admin": "speak with user in chinese language",
+            "admin": "speak with user in English language",
             "supervisor": "speak with user in chinese language",
             "technician": "speak with user in chinese language"
         }

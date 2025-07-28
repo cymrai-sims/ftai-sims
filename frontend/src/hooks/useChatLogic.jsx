@@ -36,7 +36,7 @@ const useChatLogic = (isOpen, selectedAgent, newChatTrigger) => {
     if (cached?.length) {
       setMessages(cached);
     } else {
-      const initialMessage = [{ type: 'bot', text: `Hello! How can I assist you with ${selectedAgent} today?` }];
+      const initialMessage = [{ type: 'bot', text: `Hello! How can I assist you with ${selectedAgent} model today?` }];
       setMessages(initialMessage);
       messagesCache.current[cacheKey] = initialMessage;
     }

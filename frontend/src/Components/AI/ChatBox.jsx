@@ -1,43 +1,39 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { RiRobot3Line } from 'react-icons/ri';
-import useChatLogic from '../../hooks/useChatLogic';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { RiRobot3Line } from "react-icons/ri";
+import useChatLogic from "../../hooks/useChatLogic";
 
 const ChatBox = ({ isOpen, selectedAgent }) => {
-  const {
-    input,
-    setInput,
-    messages,
-    contextRef,
-    handleKeyDown,
-    sendMessage,
-  } = useChatLogic(isOpen, selectedAgent);
+  const { input, setInput, messages, contextRef, handleKeyDown, sendMessage } =
+    useChatLogic(isOpen, selectedAgent);
 
   const agentNames = {
-    'sims-ai': 'SIMS-AI',
-    'gemini': 'Gemini',
+    local_ollama: "SIMS-AI",
+    gpt: "GPT-4.1",
   };
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 18 }}
-          exit={{ opacity: 0, y: 100 }}
-          transition={{ duration: 0.3 }}
-          className="fixed bottom-36 right-4 w-160 h-180 bg-white shadow-lg rounded-lg flex flex-col flex-1 z-50"
+          initial={{ opacity: 0, y: 180 }}
+          animate={{ opacity: 1, y: 80 }}
+          exit={{ opacity: 0, y: 80 }}
+          transition={{ duration: 0.5 }}
+          className="fixed bottom-37 right-4 w-100 h-120 bg-white shadow-lg rounded-lg flex flex-col flex-1 z-50"
         >
-          <div className="top flex flex-row items-center gap-5 px-6 py-6 bg-[var(--dark-main)] text-white border-b">
+          <div className="top flex flex-row items-center gap-2 px-3 py-3 bg-[var(--dark-main)] text-white border-b">
             <div className="icon bg-[var(--orange-main)] rounded-full p-3">
               <RiRobot3Line className="text-white text-3xl" />
             </div>
             <div>
-              <h5 className="font-bold">Chat with {agentNames[selectedAgent]}</h5>
+              <h5 className="font-bold">
+                Chat with {agentNames[selectedAgent]}
+              </h5>
               <h6 className="text-sm text-gray-100">
-                {selectedAgent === 'sims-ai'
-                  ? 'Get insights and make decisions with SIMS data.'
-                  : 'Ask Gemini for analytics and trends.'}
+                {selectedAgent === "SIMS-AI"
+                  ? "Get insights and make decisions with SIMS data."
+                  : "Ask GPT-4.1 for analytics and trends."}
               </h6>
             </div>
           </div>
@@ -49,10 +45,10 @@ const ChatBox = ({ isOpen, selectedAgent }) => {
             {messages.map((msg, i) => (
               <div
                 key={i}
-                className={`message p-3 rounded-lg mb-2 max-w-[80%] ${
-                  msg.type === 'bot'
-                    ? 'bg-gray-100 text-gray-900 text-2xl self-start'
-                    : 'bg-[var(--dark-main)] text-white text-2xl self-end text-right'
+                className={`message p-2 rounded-lg mb-2 max-w-[80%] ${
+                  msg.type === "bot"
+                    ? "bg-gray-100 text-gray-900 self-start"
+                    : "bg-[var(--dark-main)] text-white self-end text-right"
                 }`}
               >
                 {msg.text}
@@ -64,17 +60,17 @@ const ChatBox = ({ isOpen, selectedAgent }) => {
             <input
               type="text"
               placeholder="Type your message."
-              className="flex-1 border p-4 rounded-l-lg text-gray-900 text-2xl outline-solid outline-[var(--dark-main)]"
+              className="flex-1 border py-3 px-3 rounded-l-lg text-gray-900 outline-solid outline-[var(--dark-main)]"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
             />
             <button
-              className="bg-[var(--dark-main)] text-white px-[4.2rem] py-5 ml-2 rounded-r-lg text-2xl"
+              className="bg-[var(--dark-main)] text-white px-8 py-3 ml-2 rounded-r-lg outline-solid outline-[var(--dark-main)]"
               onClick={sendMessage}
               disabled={!input.trim()}
             >
-              Send
+              Send 
             </button>
           </div>
         </motion.div>

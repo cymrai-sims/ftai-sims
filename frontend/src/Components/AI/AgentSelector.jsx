@@ -4,9 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const AgentSelector = ({ isOpen, onSelectAgent, onClose }) => {
   const agents = [
-    { id: 'sims-ai', name: 'SIMS-AI', description: 'Get insights and make decisions with SIMS data.' },
-    { id: 'gemini', name: 'Gemini AI', description: 'Analyze complex datasets and generate reports.' },
+    { id: 'local_ollama', name: 'SIMS-AI', description: 'Get insights and make decisions with SIMS data.' },
+    { id: 'gpt', name: 'GPT-4.1', description: 'Analyze complex datasets and generate reports.' },
   ];
+  
 
   return (
     <AnimatePresence>

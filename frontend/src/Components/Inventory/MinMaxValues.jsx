@@ -1,59 +1,74 @@
-import React, { useMemo } from "react";
+import React from "react";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Link } from "react-router-dom";
 
-const generateRandomValues = () => ({
-  aboveMax: Math.floor(Math.random() * 100) + 50,
-  belowMin: Math.floor(Math.random() * 50) + 10,
-  target: Math.floor(Math.random() * 80) + 20
-});
+// Register the required Chart.js components
+Chart.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const BAR_COLORS = {
-  aboveMax: "bg-red-500",
-  belowMin: "bg-blue-500",
-  target: "bg-green-500"
+const locations = ["Montreal", "Miami", "AAR"];
+
+// Generate random values for min, max, and on target for each location
+const randomData = () =>
+  locations.map(() => ({
+    min: Math.floor(Math.random() * 30) + 10,
+    max: Math.floor(Math.random() * 30) + 40,
+    onTarget: Math.floor(Math.random() * 30) + 20,
+  }));
+
+const dataPoints = randomData();
+
+const data = {
+  labels: locations,
+  datasets: [
+    {
+      label: "Below Min",
+      data: dataPoints.map((d) => d.min),
+      backgroundColor: "rgb(248, 198, 48)",
+    },
+    {
+      label: "Above Max",
+      data: dataPoints.map((d) => d.max),
+      backgroundColor: "rgb(7, 46, 64)",
+    },
+    {
+      label: "On Target",
+      data: dataPoints.map((d) => d.onTarget),
+      backgroundColor: "rgb(243, 107, 33)",
+    },
+  ],
 };
 
-const LABELS = {
-  aboveMax: "Above Max",
-  belowMin: "Below Min",
-  target: "Target"
+const options = {
+  responsive: true,
+  plugins: {
+    legend: { position: "top" },
+    tooltip: { enabled: true },
+  },
+  scales: {
+    y: {
+      beginAtZero: true,
+    },
+  },
 };
 
-const MinMaxValues = () => {
-  const values = useMemo(generateRandomValues, []);
-  const maxValue = Math.max(values.aboveMax, values.belowMin, values.target);
-
-  return (
-    <div className="w-full max-w-xl mx-auto p-6">
-      <h4 className="font-bold text-lg mb-6 text-gray-700 pb-10">Min & Max Values</h4>
-      {/* Labels section */}
-      <div className="mb-6 flex flex-row justify-evenly items-center gap-4 pb-5">
-        {Object.keys(LABELS).map((key) => (
-          <div key={key} className="flex flex-col items-center">
-            <span className={`w-4 h-4 inline-block mb-2 ${BAR_COLORS[key]}`}></span>
-            <span className="text-base font-semibold text-gray-800">{LABELS[key]}</span>
-          </div>
-        ))}
-      </div>
-      {/* Bar chart with gaps */}
-      <div className="flex flex-col space-y-12">
-        {Object.keys(values).map((key) => (
-          <div key={key} className="flex items-center w-full group relative">
-            <div
-              className={`h-12 rounded ${BAR_COLORS[key]} transition-all`}
-              style={{
-                width: `${(values[key] / maxValue) * 100}%`,
-                minWidth: "2.5rem"
-              }}
-            ></div>
-            {/* Value appears only on hover */}
-            <span className="ml-4 text-xl font-bold text-gray-900 opacity-0 group-hover:opacity-100 pointer-events-none">
-              {values[key]}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+const MinMaxValues = () => (
+  <div className="w-full p-4">
+    <h3 className="font-bold pb-5">Inventory Insights by location</h3>
+    <Bar data={data} options={options} />
+    <Link to={"/inventory/global-inventory"} className="">
+      <button className="bg-[var(--dark-main)] text-white px-4 py-2 mt-4 inline-block hover:bg-[var(--blue-main)] transition-colors">
+        Full MinMax Table
+      </button>
+    </Link>
+  </div>
+);
 
 export default MinMaxValues;
