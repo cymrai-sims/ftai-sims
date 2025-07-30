@@ -155,14 +155,36 @@ class Miami(db.Model):
     
 
 class AAR(db.Model):
-    __tablename__ = 'AAR'
+    __tablename__ = 'Aar_Updated'
+    Part_Number = db.Column(db.String(255), primary_key=True)  
 
-    DESCRIPTION = db.Column(db.String(100), primary_key=True)
-    PN_GROUP = db.Column(db.String(255))
-    PN = db.Column(db.String(255))
-    MAT_GROUP_1 = db.Column(db.String(255))
-    QTY_AVAILABLE = db.Column(db.Integer)
-    LOCATION = db.Column(db.String(255))
+    As_Of_Date =db.Column(String(50)) # db.Column(db.Date)
+    Part_Type = db.Column(db.String(255))
+    Engine_Serial_Number = db.Column(db.String(255))
+    Invoice_Date =db.Column(String(50)) # db.Column(db.Date)
+    Serial_Number = db.Column(db.String(255))
+    Description = db.Column(db.String(255))  
+    Quantity = db.Column(db.Integer)
+    Condition = db.Column(db.String(255))
+    Tag_Number = db.Column(db.String(255))
+    FSC_Code = db.Column(db.String(255))
+    On_Hand_Date =db.Column(String(50)) # db.Column(db.Date)
+    Repair_Order_Number = db.Column(db.String(255))
+    Warehouse_Code = db.Column(db.String(255))
+    Repair_Unit_Cost = db.Column(db.Float)
+    Repair_Extended_Cost = db.Column(db.Float)
+    Unit_Sales_Price = db.Column(db.Float)
+    Extended_Sales_Price = db.Column(db.Float)
+    Purchase_Order_Number = db.Column(db.String(255))
+    Miscellaneous_PO_Number = db.Column(db.String(255))
+    Backlog_Status = db.Column(db.String(255))
+    Sales_Order_Number = db.Column(db.String(255))
+    Ultimate_Destination_Country = db.Column(db.String(255))
+    Updated_Description = db.Column(db.String(255))
+    Module = db.Column(db.String(255))
+    Sub_Type = db.Column(db.String(255))
+    Avg_No_of_Sales_Days = db.Column(db.Integer)
+    BV_New_Alloc = db.Column(db.String(255))
 
     def to_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}

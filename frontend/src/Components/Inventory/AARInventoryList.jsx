@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const columns = [
   {
     name: "Part Number",
-    selector: (row) => row.PN,
+    selector: (row) => row.Part_Number,    
     sortable: true,
     wrap: true,
     cell: (row) => (
@@ -19,36 +19,171 @@ const columns = [
       </Link>
     ),
   },
-  {
-    name: "Part Number Group",
-    selector: (row) => row.PN_GROUP,
-    sortable: true,
-    wrap: true,
-  },
+
   {
     name: "Part Description",
-    selector: (row) => row.DESCRIPTION,
+    selector: (row) => row.Description,
+    sortable: true,
+    wrap: true,
+  },
+
+  {
+    name: "As Of Date",
+    selector: (row) => row.As_Of_Date,
     sortable: true,
     wrap: true,
   },
   {
-    name: "Available Quantity",
-    selector: (row) => row.QTY_AVAILABLE,
+    name: "Part Type",
+    selector: (row) => row.Part_Type,
     sortable: true,
-    right: true,
+    wrap: true,
   },
   {
-    name: "Material Group",
-    selector: (row) => row.MAT_GROUP_1,
+    name: "Engine Serial Number",
+    selector: (row) => row.Engine_Serial_Number,
     sortable: true,
-    right: true,
+    wrap: true,
   },
-  // {
-  //   name: "Location",
-  //   selector: (row) => row.LOCATION,
-  //   sortable: true,
-  //   right: true,
-  // },
+  {
+    name: "Part Number",
+    selector: (row) => row.Part_Number,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Serial Number",
+    selector: (row) => row.Serial_Number,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Quantity",
+    selector: (row) => row.Quantity,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Condition",
+    selector: (row) => row.Condition,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Tag Number",
+    selector: (row) => row.Tag_Number,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "FSC Code",
+    selector: (row) => row.FSC_Code,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "On Hand Date",
+    selector: (row) => row.On_Hand_Date,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Repair Order Number",
+    selector: (row) => row.Repair_Order_Number,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Warehouse Code",
+    selector: (row) => row.Warehouse_Code,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Repair Unit Cost",
+    selector: (row) => row.Repair_Unit_Cost,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Repair Extended Cost",
+    selector: (row) => row.Repair_Extended_Cost,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Unit Sales Price",
+    selector: (row) => row.Unit_Sales_Price,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Extended Sales Price",
+    selector: (row) => row.Extended_Sales_Price,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Purchase Order Number",
+    selector: (row) => row.Purchase_Order_Number,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Miscellaneous PO Number",
+    selector: (row) => row.Miscellaneous_PO_Number,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Backlog Status",
+    selector: (row) => row.Backlog_Status,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Sales Order Number",
+    selector: (row) => row.Sales_Order_Number,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Ultimate Destination Country",
+    selector: (row) => row.Ultimate_Destination_Country,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Updated Description",
+    selector: (row) => row.Updated_Description,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Module",
+    selector: (row) => row.Module,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Sub Type",
+    selector: (row) => row.Sub_Type,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "Avg No of Sales Days",
+    selector: (row) => row.Avg_No_of_Sales_Days,
+    sortable: true,
+    wrap: true,
+  },
+  {
+    name: "BV New Alloc",
+    selector: (row) => row.BV_New_Alloc,
+    sortable: true,
+    wrap: true,
+  },
+
 ];
 
 const AARInventoryList = () => {
@@ -105,7 +240,7 @@ const AARInventoryList = () => {
   }, [search, inventories, locationFilter]);
 
   return (
-    <div className="p-4">
+    <div className="p-4">invent
       <h3 className="pb-5 text-[var(--dark-main)] font-bold">
         AAR Inventory List
       </h3>

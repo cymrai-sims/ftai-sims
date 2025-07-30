@@ -4,30 +4,39 @@ import Navbar from '../Components/Navigation/Navbar';
 import Chat from '../Components/AI/Chat';
 import ChatBox from '../Components/AI/ChatBox';
 import AgentSelector from '../Components/AI/AgentSelector';
-
 import { ChatContext } from '../Components/contexts/ChatContext';
 
 const AppLayout = ({ children }) => {
   const [sideBarCollapsed, setSideBarCollapsed] = useState(false);
   const [currentPage, setCurrentPage] = useState('dashboard');
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [selectedChatAgent, setSelectedChatAgent] = useState(null); 
+   
+//*
+  //! uncomment the following if you want the select Agent feature back.
+    //const [selectedChatAgent, setSelectedChatAgent] = useState(null);
+  // const toggleChat = useCallback(() => {                                                      
+  //   if (isChatOpen) {
+  //     setSelectedChatAgent(null); // reset agent when closing
+  //   }
+  //   setIsChatOpen(prev => !prev);
+  // }, [isChatOpen]);
 
-  const toggleChat = useCallback(() => {
-    if (isChatOpen) {
-      setSelectedChatAgent(null); // reset agent when closing
-    }
-    setIsChatOpen(prev => !prev);
-  }, [isChatOpen]);
+  // const handleSelectAgent = useCallback((agentId) => {
+  //   setSelectedChatAgent(agentId);
+  // }, []);
 
-  const handleSelectAgent = useCallback((agentId) => {
-    setSelectedChatAgent(agentId);
-  }, []);
+  // const handleCloseChat = useCallback(() => {
+  //   setIsChatOpen(false);
+  //   setSelectedChatAgent(null);
+  // }, []);
 
-  const handleCloseChat = useCallback(() => {
-    setIsChatOpen(false);
-    setSelectedChatAgent(null);
-  }, []);
+
+
+//! and comment this out 
+const toggleChat = () => {
+  setIsChatOpen((prev) => !prev);
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-all duration-500">
@@ -53,9 +62,9 @@ const AppLayout = ({ children }) => {
 
       {/* Chat Button */}
       <Chat onClick={toggleChat} isOpen={isChatOpen} />
-
+//! Ui for AI agente selector 
       {/* Conditional Chat UI */}
-      {isChatOpen && !selectedChatAgent && (
+      {/* {isChatOpen && !selectedChatAgent && (
         <AgentSelector
           isOpen={true}
           onSelectAgent={handleSelectAgent}
@@ -68,7 +77,23 @@ const AppLayout = ({ children }) => {
           isOpen={true}
           selectedAgent={selectedChatAgent}
         />
-      )}
+      )} */}
+
+
+
+       //!   {/* Always show ChatBox using GPT */} comment this out if yiu want to use local lamma 
+    {isChatOpen && (
+      <ChatBox
+        isOpen={true}
+        selectedAgent="gpt"
+      />
+    )}
+
+
+
+
+
+
     </div>
   );
 };

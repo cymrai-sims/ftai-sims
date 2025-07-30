@@ -32,7 +32,7 @@ def handle_dashboard_insight():
     message = data.get('message', '')
     page = data.get('page','')
     model_name='gpt' 
-    print(f"Message: {message}, Page: {page}", file=sys.stderr)
+    #print(f"Message: {message}, Page: {page}", file=sys.stderr)
      # or 'local_ollama' based on your requirement
     if not all([message, page]):
         return jsonify({"reply": "Missing message, or page"}), 400

@@ -68,8 +68,6 @@ def get_insight(page, user_input):
     system_message = {"role": "system", "content": prompt}
     messages.insert(0, system_message)
 
-    print(f"inside Message: {messages}, Page: {page}", file=sys.stderr)
-
     
     try:
         response = client.chat.completions.create(
@@ -79,7 +77,7 @@ def get_insight(page, user_input):
             top_p=top_p,
             model=deployment
         )
-        print(f"response: {response}, Page: {page}", file=sys.stderr)
+        #print(f"response: {response}, Page: {page}", file=sys.stderr)
 
         response_text = response.choices[0].message.content
         return response_text
